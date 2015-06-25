@@ -290,6 +290,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int indicator_corner_radius=0x7f060001;
         public static final int indicator_internal_padding=0x7f060002;
         public static final int indicator_right_padding=0x7f060000;
+        public static final int padding=0x7f060007;
+        public static final int shadow_width=0x7f060008;
+        public static final int slidingmenu_offset=0x7f060009;
+        public static final int slidingmenu_offset2=0x7f06000a;
     }
     public static final class drawable {
         public static final int bg2=0x7f020000;
@@ -368,7 +372,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pull_to_refresh_header_horizontal=0x7f030001;
         public static final int pull_to_refresh_header_vertical=0x7f030002;
         public static final int slidingmenu_left=0x7f030003;
-        public static final int slidingmenumain=0x7f030004;
+        public static final int slidingmenu_right=0x7f030004;
+        public static final int slidingmenumain=0x7f030005;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
