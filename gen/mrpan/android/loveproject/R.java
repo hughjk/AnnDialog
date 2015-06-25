@@ -262,18 +262,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int viewBehind=0x7f010015;
     }
     public static final class color {
-        public static final int black=0x7f080004;
-        public static final int blue=0x7f080001;
-        public static final int devide_line=0x7f080000;
-        public static final int gold=0x7f080005;
-        public static final int gray=0x7f080008;
-        public static final int grays=0x7f080003;
-        public static final int orange=0x7f08000a;
-        public static final int orange_yellow=0x7f08000b;
-        public static final int red=0x7f080007;
-        public static final int transparent=0x7f080006;
-        public static final int whites=0x7f080002;
-        public static final int yellow=0x7f080009;
+        public static final int menu_left_background_select=0x7f080001;
+        public static final int menu_left_background_selected=0x7f080000;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -313,6 +303,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int btn_personal=0x7f02000e;
         public static final int btn_personal1=0x7f02000f;
         public static final int btn_personal2=0x7f020010;
+        public static final int clr_normal=0x7f020019;
+        public static final int clr_pressed=0x7f02001a;
         public static final int cursor=0x7f020011;
         public static final int default_ptr_flip=0x7f020012;
         public static final int default_ptr_rotate=0x7f020013;
@@ -320,6 +312,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int indicator_arrow=0x7f020015;
         public static final int indicator_bg_bottom=0x7f020016;
         public static final int indicator_bg_top=0x7f020017;
+        public static final int menu_left=0x7f020018;
     }
     public static final class id {
         public static final int action_settings=0x7f05002b;
@@ -381,8 +374,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class string {
         public static final int action_settings=0x7f070008;
         public static final int app_name=0x7f070006;
-        public static final int cusor=0x7f07000c;
+        public static final int cusor=0x7f070011;
         public static final int hello_world=0x7f070007;
+        public static final int left_menu1=0x7f07000c;
+        public static final int left_menu2=0x7f07000d;
+        public static final int left_menu3=0x7f07000e;
+        public static final int left_menu4=0x7f07000f;
+        public static final int left_menu5=0x7f070010;
         public static final int menu1=0x7f070009;
         public static final int menu2=0x7f07000a;
         public static final int menu3=0x7f07000b;

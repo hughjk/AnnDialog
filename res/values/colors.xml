@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?> 
 <resources> 
 
- 	<color name="devide_line">#CBCED2</color>
-    <color name="blue">#499BF7</color>
-    <color name="whites">#ffffff</color>
-    <color name="grays">#818181</color>
-    <color name="black">#000000</color>
-    <color name="gold">#000000</color>
-    <color name="transparent">#00000000</color>
-    <color name="red">#FF0000</color>
-    <color name="gray">#AFAFAF</color>
-    <color name="yellow">#F99503</color>
-    <color name="orange">#ff9900</color>
-    <color name="orange_yellow">#9b9ba0</color>
-
+ 	<color name="menu_left_background_selected">#22c85555</color>
+ 	<color name="menu_left_background_select">#22c85555</color>
+ 	
 </resources>

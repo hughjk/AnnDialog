@@ -11,7 +11,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="#22c85555"
+        android:background="@drawable/menu_left"
         android:paddingTop="20dp" >
 
         <ImageView
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/imageView1"
             android:layout_alignLeft="@+id/textView1"
-            android:text="NEWS"
+            android:text="@string/left_menu1"
             android:textColor="#99ffffff"
             android:textSize="10dp" />
 
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/imageView1"
-            android:text="新闻"
+            android:text="@string/left_menu1"
             android:textColor="#99ffffff"
             android:textSize="18dp" />
 
@@ -45,6 +45,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="@drawable/menu_left"
         android:paddingTop="20dp" >
 
         <ImageView
@@ -59,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/imageView2"
-            android:text="订阅"
+            android:text="@string/left_menu2"
             android:textColor="#99ffffff"
             android:textSize="18dp" />
 
@@ -69,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/imageView2"
             android:layout_alignLeft="@+id/textView6"
-            android:text="READING"
+            android:text="@string/left_menu2"
             android:textColor="#99ffffff"
             android:textSize="10dp" />
     </RelativeLayout>
@@ -78,6 +79,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="@drawable/menu_left"
         android:paddingTop="20dp" >
 
         <ImageView
@@ -91,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/imageView3"
             android:layout_alignLeft="@+id/textView3"
-            android:text="LOCAL"
+            android:text="@string/left_menu3"
             android:textColor="#99ffffff"
             android:textSize="10dp" />
 
@@ -101,7 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/imageView3"
-            android:text="本地"
+            android:text="@string/left_menu3"
             android:textColor="#99ffffff"
             android:textSize="18dp" />
 
@@ -111,6 +113,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="@drawable/menu_left"
         android:paddingTop="20dp" >
 
         <ImageView
@@ -125,7 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/imageView4"
-            android:text="跟帖"
+            android:text="@string/left_menu4"
             android:textColor="#99ffffff"
             android:textSize="18dp" />
 
@@ -135,7 +138,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/imageView4"
             android:layout_alignLeft="@+id/textView7"
-            android:text="COMMENT"
+            android:text="@string/left_menu4"
             android:textColor="#99ffffff"
             android:textSize="10dp" />
     </RelativeLayout>
@@ -144,6 +147,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="@drawable/menu_left"
         android:paddingTop="20dp" >
 
         <ImageView
@@ -157,7 +161,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/imageView5"
             android:layout_alignLeft="@+id/textView5"
-            android:text="PHOTO"
+            android:text="@string/left_menu5"
             android:textColor="#99ffffff"
             android:textSize="10dp" />
 
@@ -167,7 +171,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/imageView5"
-            android:text="图片"
+            android:text="@string/left_menu5"
             android:textColor="#99ffffff"
             android:textSize="18dp" />
 

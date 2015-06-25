@@ -7,5 +7,14 @@
     <string name="menu1">Menu1</string>
     <string name="menu2">Menu2</string>
     <string name="menu3">Menu3</string>
+    <string name="left_menu1">Menu1</string>
+    <string name="left_menu2">Menu2</string>
+    <string name="left_menu3">Menu3</string>
+    <string name="left_menu4">Menu4</string>
+    <string name="left_menu5">Menu5</string>
 	<string name="cusor"></string>
+	
+	<drawable name="clr_normal">#00000000</drawable>
+ 	<drawable name="clr_pressed">#22c85555</drawable>
+	
 </resources>
