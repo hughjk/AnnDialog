@@ -10,6 +10,7 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:layout_weight="1"
         android:background="@drawable/menu_left"
         android:paddingTop="20dp" >
@@ -44,6 +45,7 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:layout_weight="1"
         android:background="@drawable/menu_left"
         android:paddingTop="20dp" >
@@ -79,6 +81,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:clickable="true"
         android:background="@drawable/menu_left"
         android:paddingTop="20dp" >
 
@@ -113,6 +116,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:clickable="true"
         android:background="@drawable/menu_left"
         android:paddingTop="20dp" >
 
@@ -148,6 +152,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@drawable/menu_left"
+        android:clickable="true"
         android:paddingTop="20dp" >
 
         <ImageView

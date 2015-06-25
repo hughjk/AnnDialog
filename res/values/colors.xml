@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?> 
 <resources> 
 
- 	<color name="menu_left_background_selected">#22c85555</color>
+ 	<color name="menu_left_background_selected">#000000</color>
  	<color name="menu_left_background_select">#22c85555</color>
  	
 </resources>
