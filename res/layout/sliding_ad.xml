@@ -5,11 +5,11 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" >
     
-    <mrpan.android.loveproject.AdvViewPager
+    <mrpan.android.loveproject.view.AdViewPager
         android:id="@+id/vpAdv"
         android:layout_width="fill_parent"
         android:layout_height="160dp" >
-    </mrpan.android.loveproject.AdvViewPager>
+    </mrpan.android.loveproject.view.AdViewPager>
 
     <LinearLayout
         android:id="@+id/viewGroup"

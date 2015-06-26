@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
+import mrpan.android.loveproject.view.AdViewPager;
+
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
@@ -40,18 +43,18 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	private ViewPager vpViewPager = null;
 	private List<View> views = null;
-	
+
 	private Animation animation = null;
 
 	private int offset; // 间隔
 	private int cursorWidth; // 游标的长度
 	private int originalIndex = 0;
 	private ImageView cursor = null;
-	
+
 	private PullToRefreshListView ptrlvHeadLineNews = null;
 	private NewListAdapter newAdapter = null;
 
-	private AdvViewPager vpAdv = null;
+	private AdViewPager vpAdv = null;
 	private ViewGroup vg = null;
 	private ImageView[] imageViews = null;
 	private List<View> advs = null;
@@ -89,37 +92,37 @@ public class MainActivity extends Activity implements OnClickListener {
 				.setOnClickListener(this);
 		((RelativeLayout) findViewById(R.id.left_menu5))
 				.setOnClickListener(this);
-		 ((TextView) findViewById(R.id.tvTag1)).setOnClickListener(this);
-		 ((TextView) findViewById(R.id.tvTag2)).setOnClickListener(this);
-		 ((TextView) findViewById(R.id.tvTag3)).setOnClickListener(this);
-		 ((TextView) findViewById(R.id.loginNow)).setOnClickListener(this);
-		 views = new ArrayList<View>();
-			views.add(LayoutInflater.from(this).inflate(R.layout.head_lines, null));
-			views.add(LayoutInflater.from(this).inflate(R.layout.entertainment,
-					null));
-			views.add(LayoutInflater.from(this).inflate(R.layout.finance, null));
+		((RelativeLayout) findViewById(R.id.loginNow))
+		.setOnClickListener(this);
+		((TextView) findViewById(R.id.tvTag1)).setOnClickListener(this);
+		((TextView) findViewById(R.id.tvTag2)).setOnClickListener(this);
+		((TextView) findViewById(R.id.tvTag3)).setOnClickListener(this);
+		views = new ArrayList<View>();
+		views.add(LayoutInflater.from(this).inflate(R.layout.layout1, null));
+		views.add(LayoutInflater.from(this).inflate(R.layout.layout3, null));
+		views.add(LayoutInflater.from(this).inflate(R.layout.layout2, null));
 
-			vpViewPager = (ViewPager) findViewById(R.id.vpViewPager1);
-			vpViewPager.setAdapter(new MyPagerAdapter(views));
-			vpViewPager.setOnPageChangeListener(new MyOnPageChangeListener());
+		vpViewPager = (ViewPager) findViewById(R.id.vpViewPager1);
+		vpViewPager.setAdapter(new MyPagerAdapter(views));
+		vpViewPager.setOnPageChangeListener(new MyOnPageChangeListener());
 
-			initCursor(views.size());
-			
-			MyPagerAdapter myPagerAdapter = (MyPagerAdapter) vpViewPager
-					.getAdapter();
-			View v1 = myPagerAdapter.getItemAtPosition(0);
-//			View v2 = myPagerAdapter.getItemAtPosition(1);
-//			View v3 = myPagerAdapter.getItemAtPosition(2);
-			ptrlvHeadLineNews = (PullToRefreshListView) v1
-					.findViewById(R.id.ptrlvHeadLineNews);
-//			ptrlvEntertainmentNews = (PullToRefreshListView) v2
-//					.findViewById(R.id.ptrlvEntertainmentNews);
-//			ptrlvFinanceNews = (PullToRefreshListView) v3
-//					.findViewById(R.id.ptrlvFinanceNews);
-			newAdapter = new NewListAdapter(this, getSimulationNews(10));
-			initPullToRefreshListView(ptrlvHeadLineNews, newAdapter);
-			//initPullToRefreshListView(ptrlvEntertainmentNews, newAdapter);
-			//initPullToRefreshListView(ptrlvFinanceNews, newAdapter);
+		initCursor(views.size());
+
+		MyPagerAdapter myPagerAdapter = (MyPagerAdapter) vpViewPager
+				.getAdapter();
+		View v1 = myPagerAdapter.getItemAtPosition(0);
+		// View v2 = myPagerAdapter.getItemAtPosition(1);
+		// View v3 = myPagerAdapter.getItemAtPosition(2);
+		ptrlvHeadLineNews = (PullToRefreshListView) v1
+				.findViewById(R.id.ptrlvHeadLineNews);
+		// ptrlvEntertainmentNews = (PullToRefreshListView) v2
+		// .findViewById(R.id.ptrlvEntertainmentNews);
+		// ptrlvFinanceNews = (PullToRefreshListView) v3
+		// .findViewById(R.id.ptrlvFinanceNews);
+		newAdapter = new NewListAdapter(this, getSimulationNews(10));
+		initPullToRefreshListView(ptrlvHeadLineNews, newAdapter);
+		// initPullToRefreshListView(ptrlvEntertainmentNews, newAdapter);
+		// initPullToRefreshListView(ptrlvFinanceNews, newAdapter);
 	}
 
 	/**
@@ -176,7 +179,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			break;
 		}
 	}
-	
+
 	/**
 	 * 获取N条模拟的新闻数据<br>
 	 * 打包成ArrayList返回
@@ -201,43 +204,6 @@ public class MainActivity extends Activity implements OnClickListener {
 			ret.add(hm);
 		}
 		return ret;
-	}
-	
-	class MyPagerAdapter extends PagerAdapter {
-
-		private List<View> views;
-
-		public MyPagerAdapter(List<View> views) {
-			this.views = views;
-		}
-
-		@Override
-		public int getCount() {
-			return views.size();
-		}
-
-		@Override
-		public boolean isViewFromObject(View arg0, Object arg1) {
-			return arg0 == arg1;
-		}
-
-		@Override
-		public void destroyItem(View container, int position, Object object) {
-			// 将指定的view从viewPager中移除
-			((ViewPager) container).removeView(views.get(position));
-		}
-
-		@Override
-		public Object instantiateItem(View container, int position) {
-			// 将view添加到viewPager中
-			((ViewPager) container).addView(views.get(position));
-			return views.get(position);
-		}
-
-		public View getItemAtPosition(int position) {
-			return views.get(position);
-		}
-
 	}
 
 	class MyOnPageChangeListener implements OnPageChangeListener {
@@ -290,7 +256,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 
 	}
-	
+
 	/**
 	 * 初始化PullToRefreshListView<br>
 	 * 初始化在PullToRefreshListView中的ViewPager广告栏
@@ -306,8 +272,8 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		if (rtflv.getId() == R.id.ptrlvHeadLineNews) {
 			RelativeLayout rlAdv = (RelativeLayout) LayoutInflater.from(this)
-					.inflate(R.layout.sliding_advertisement, null);
-			vpAdv = (AdvViewPager) rlAdv.findViewById(R.id.vpAdv);
+					.inflate(R.layout.sliding_ad, null);
+			vpAdv = (AdViewPager) rlAdv.findViewById(R.id.vpAdv);
 			vg = (ViewGroup) rlAdv.findViewById(R.id.viewGroup);
 
 			advs = new ArrayList<View>();
@@ -316,19 +282,19 @@ public class MainActivity extends Activity implements OnClickListener {
 			iv.setBackgroundResource(R.drawable.ic_launcher);
 			advs.add(iv);
 
-//			iv = new ImageView(this);
-//			iv.setBackgroundResource(R.drawable.new_img2);
-//			advs.add(iv);
-//
-//			iv = new ImageView(this);
-//			iv.setBackgroundResource(R.drawable.new_img3);
-//			advs.add(iv);
-//
-//			iv = new ImageView(this);
-//			iv.setBackgroundResource(R.drawable.new_img4);
-//			advs.add(iv);
+			// iv = new ImageView(this);
+			// iv.setBackgroundResource(R.drawable.new_img2);
+			// advs.add(iv);
+			//
+			// iv = new ImageView(this);
+			// iv.setBackgroundResource(R.drawable.new_img3);
+			// advs.add(iv);
+			//
+			// iv = new ImageView(this);
+			// iv.setBackgroundResource(R.drawable.new_img4);
+			// advs.add(iv);
 
-			vpAdv.setAdapter(new AdvAdapter());
+			vpAdv.setAdapter(new AdAdapter());
 			vpAdv.setOnPageChangeListener(new OnPageChangeListener() {
 
 				@Override
@@ -374,7 +340,6 @@ public class MainActivity extends Activity implements OnClickListener {
 
 			rtflv.getRefreshableView().addHeaderView(rlAdv, null, false);
 
-			
 			final Handler handler = new Handler() {
 				@Override
 				public void handleMessage(Message msg) {
@@ -390,7 +355,7 @@ public class MainActivity extends Activity implements OnClickListener {
 						try {
 							Thread.sleep(5000);
 							currentPage++;
-							if(currentPage > advs.size()-1) {
+							if (currentPage > advs.size() - 1) {
 								currentPage = 0;
 							}
 							handler.sendEmptyMessage(currentPage);
@@ -402,10 +367,9 @@ public class MainActivity extends Activity implements OnClickListener {
 			}).start();
 		}
 	}
-	
+
 	class MyOnRefreshListener2 implements OnRefreshListener2<ListView> {
 
-		@SuppressWarnings("unused")
 		private PullToRefreshListView mPtflv;
 
 		public MyOnRefreshListener2(PullToRefreshListView ptflv) {
@@ -432,8 +396,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 
 	}
-	
-	class AdvAdapter extends PagerAdapter {
+
+	class AdAdapter extends PagerAdapter {
 
 		@Override
 		public int getCount() {
@@ -457,8 +421,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 
 	}
-	
-	
+
 	/**
 	 * 请求网络获得新闻信息
 	 * 
@@ -474,24 +437,24 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		@Override
 		protected Integer doInBackground(String... params) {
-			
+
 			return 1;
-//			if (CommonUtil.isWifiConnected(MainActivity.this)) {
-//				try {
-//					Thread.sleep(1000);
-//					return HTTP_REQUEST_SUCCESS;
-//				} catch (InterruptedException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//			return HTTP_REQUEST_SUCCESS;
+			// if (CommonUtil.isWifiConnected(MainActivity.this)) {
+			// try {
+			// Thread.sleep(1000);
+			// return HTTP_REQUEST_SUCCESS;
+			// } catch (InterruptedException e) {
+			// e.printStackTrace();
+			// }
+			// }
+			// return HTTP_REQUEST_SUCCESS;
 		}
 
 		@Override
 		protected void onPostExecute(Integer result) {
 			super.onPostExecute(result);
 			switch (result) {
-			case 1://HTTP_REQUEST_SUCCESS:
+			case 1:// HTTP_REQUEST_SUCCESS:
 				newAdapter.addNews(getSimulationNews(10));
 				newAdapter.notifyDataSetChanged();
 				break;

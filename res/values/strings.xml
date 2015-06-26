@@ -12,9 +12,9 @@
     <string name="left_menu3">Menu3</string>
     <string name="left_menu4">Menu4</string>
     <string name="left_menu5">Menu5</string>
+    <string name="right_menu">立即登录</string>
 	<string name="cusor"></string>
 	
-	<drawable name="clr_normal">#00000000</drawable>
- 	<drawable name="clr_pressed">#22c85555</drawable>
+	
 	
 </resources>

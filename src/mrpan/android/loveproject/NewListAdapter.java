@@ -3,10 +3,10 @@ package mrpan.android.loveproject;
 import java.util.HashMap;
 import java.util.List;
 
+import mrpan.android.loveproject.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.display.BitmapDisplayer;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 import android.content.Context;
@@ -17,11 +17,18 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
+/**
+ * @author MrPan
+ * @since 2015-06-26
+ * @email wslongchen@vip.qq.com
+ */
 public class NewListAdapter extends BaseAdapter {
 	
 	private ImageLoader imageLoader = null;
 	private	DisplayImageOptions options = null;
 	
+	//容器
 	static class ViewHolder {
 		ImageView ivPreview;
 		TextView tvTitle;
@@ -65,7 +72,7 @@ public class NewListAdapter extends BaseAdapter {
 		
 		ViewHolder holder = null;
 		if(convertView == null) {
-			convertView = LayoutInflater.from(context).inflate(R.layout.item_news, null);
+			convertView = LayoutInflater.from(context).inflate(R.layout.item_listview, null);
 			holder = new ViewHolder();
 			holder.ivPreview = (ImageView) convertView.findViewById(R.id.ivPreview);
 			holder.tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
@@ -77,6 +84,7 @@ public class NewListAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 		
+		//设置显示数据
 		imageLoader.displayImage(getItem(position).get("uri"), holder.ivPreview, options);
 		holder.tvTitle.setText(getItem(position).get("title"));
 		holder.tvContent.setText(getItem(position).get("content"));
@@ -85,6 +93,7 @@ public class NewListAdapter extends BaseAdapter {
 		return convertView;
 	}
 	
+	//添加项
 	public void addNews(List<HashMap<String, String>> addNews) {
 		for(HashMap<String, String> hm:addNews) {
 			news.add(hm);

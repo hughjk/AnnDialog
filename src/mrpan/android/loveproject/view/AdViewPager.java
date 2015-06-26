@@ -1,17 +1,22 @@
-package mrpan.android.loveproject;
+package mrpan.android.loveproject.view;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
-public class AdvViewPager extends ViewPager {
+/**
+ * @author MrPan
+ * @since 2015-06-26
+ * @email wslongchen@vip.qq.com
+ */
+public class AdViewPager extends ViewPager {
 
-	public AdvViewPager(Context context) {
+	public AdViewPager(Context context) {
 		super(context);
 	}	
 	
-	public AdvViewPager(Context context, AttributeSet attrs) {
+	public AdViewPager(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 	

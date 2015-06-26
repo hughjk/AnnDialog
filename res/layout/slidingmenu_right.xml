@@ -10,17 +10,26 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="52dp"
+        android:contentDescription="@string/cusor"
         android:src="@drawable/biz_pc_main_info_profile_avatar_bg_dark" />
 
-    <TextView
+    <LinearLayout
         android:id="@+id/loginNow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/imageView1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp"
-        android:text="立刻登陆"
-        android:textSize="25sp"
-        android:textColor="#ffffffff" />
+        android:background="@drawable/menu_select"
+        android:gravity="center"
+        android:clickable="true"
+        android:layout_marginTop="22dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/right_menu"
+            android:textColor="#ffffffff"
+            android:textSize="25sp" />
+    </LinearLayout>
 
 </RelativeLayout>
