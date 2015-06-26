@@ -8,6 +8,7 @@
     android:paddingBottom="60dp" >
     
     <RelativeLayout
+        android:id="@+id/left_menu1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -43,6 +44,7 @@
     </RelativeLayout>
     
     <RelativeLayout
+        android:id="@+id/left_menu2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -78,6 +80,7 @@
     </RelativeLayout>
     
     <RelativeLayout
+        android:id="@+id/left_menu3"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -113,6 +116,7 @@
     </RelativeLayout>
     
     <RelativeLayout
+        android:id="@+id/left_menu4"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -148,6 +152,7 @@
     </RelativeLayout>
     
     <RelativeLayout
+        android:id="@+id/left_menu5"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
