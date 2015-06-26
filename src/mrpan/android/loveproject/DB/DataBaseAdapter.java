@@ -26,7 +26,7 @@ public class DataBaseAdapter {
 		values.put("user_info", user.getInfo());
 		values.put("user_photo", user.getPhoto());
 		values.put("user_level", user.getLevel());
-		values.put("time_last", user.getTime_last());
+		//values.put("time_last", user.getTime_last());
 
 		return mDb.insert("User", null, values);
 	}

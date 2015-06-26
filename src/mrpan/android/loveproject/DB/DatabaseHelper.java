@@ -26,7 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	private static SQLiteDatabase mDb = null;
 	public static final String DATABASE_NAME = "loveproject.db";
 	public static final String DB_PATH =Environment.getExternalStorageDirectory()
-	 + "/LoveProject/DataBases"; // 在手机里存放数据库的位置
+	 + "/LoveProject/DataBases/"; // 在手机里存放数据库的位置
 	Context context;
 
 	public DatabaseHelper(Context context) {
