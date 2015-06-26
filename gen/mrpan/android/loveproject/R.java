@@ -9,10 +9,12 @@ package mrpan.android.loveproject;
 
 public final class R {
     public static final class anim {
-        public static final int slide_in_from_bottom=0x7f040000;
-        public static final int slide_in_from_top=0x7f040001;
-        public static final int slide_out_to_bottom=0x7f040002;
-        public static final int slide_out_to_top=0x7f040003;
+        public static final int layout_anim=0x7f040000;
+        public static final int login_anim=0x7f040001;
+        public static final int slide_in_from_bottom=0x7f040002;
+        public static final int slide_in_from_top=0x7f040003;
+        public static final int slide_out_to_bottom=0x7f040004;
+        public static final int slide_out_to_top=0x7f040005;
     }
     public static final class attr {
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
@@ -262,6 +264,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int viewBehind=0x7f010015;
     }
     public static final class color {
+        public static final int devide_line=0x7f080002;
         public static final int menu_left_background_select=0x7f080001;
         public static final int menu_left_background_selected=0x7f080000;
     }
@@ -305,8 +308,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int btn_personal=0x7f020010;
         public static final int btn_personal1=0x7f020011;
         public static final int btn_personal2=0x7f020012;
-        public static final int clr_normal=0x7f02001c;
-        public static final int clr_pressed=0x7f02001d;
+        public static final int clr_normal=0x7f02001f;
+        public static final int clr_pressed=0x7f020020;
         public static final int cursor=0x7f020013;
         public static final int default_ptr_flip=0x7f020014;
         public static final int default_ptr_rotate=0x7f020015;
@@ -315,80 +318,92 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int indicator_arrow=0x7f020018;
         public static final int indicator_bg_bottom=0x7f020019;
         public static final int indicator_bg_top=0x7f02001a;
-        public static final int menu_select=0x7f02001b;
+        public static final int login_btn=0x7f02001b;
+        public static final int login_et_bg=0x7f02001c;
+        public static final int menu_select=0x7f02001d;
+        public static final int zhuce_btn=0x7f02001e;
     }
     public static final class id {
-        public static final int action_settings=0x7f050039;
-        public static final int bNew=0x7f050012;
-        public static final int bPersonal=0x7f050013;
+        public static final int action_settings=0x7f050041;
+        public static final int bNew=0x7f05001a;
+        public static final int bPersonal=0x7f05001b;
         public static final int both=0x7f050003;
         public static final int disabled=0x7f050000;
-        public static final int fl_inner=0x7f05001f;
+        public static final int fl_inner=0x7f050027;
         public static final int flip=0x7f050008;
+        public static final int forgetpwd=0x7f050016;
         public static final int fullscreen=0x7f05000f;
         public static final int gridview=0x7f050009;
-        public static final int imageView1=0x7f050028;
-        public static final int imageView2=0x7f05002a;
-        public static final int imageView3=0x7f05002e;
-        public static final int imageView4=0x7f050031;
-        public static final int imageView5=0x7f050035;
-        public static final int ivCursor=0x7f050017;
-        public static final int ivPreview=0x7f050019;
+        public static final int imageView1=0x7f050030;
+        public static final int imageView2=0x7f050032;
+        public static final int imageView3=0x7f050036;
+        public static final int imageView4=0x7f050039;
+        public static final int imageView5=0x7f05003d;
+        public static final int ivCursor=0x7f05001f;
+        public static final int ivPreview=0x7f050021;
         public static final int left=0x7f05000c;
-        public static final int left_menu1=0x7f050027;
-        public static final int left_menu2=0x7f050029;
-        public static final int left_menu3=0x7f05002d;
-        public static final int left_menu4=0x7f050030;
-        public static final int left_menu5=0x7f050034;
-        public static final int loginNow=0x7f050037;
+        public static final int left_menu1=0x7f05002f;
+        public static final int left_menu2=0x7f050031;
+        public static final int left_menu3=0x7f050035;
+        public static final int left_menu4=0x7f050038;
+        public static final int left_menu5=0x7f05003c;
+        public static final int ll_user_info=0x7f050013;
+        public static final int login=0x7f050017;
+        public static final int loginNow=0x7f05003f;
+        public static final int login_picture=0x7f050011;
         public static final int manualOnly=0x7f050004;
         public static final int margin=0x7f05000e;
-        public static final int ptrlvHeadLineNews=0x7f05001d;
+        public static final int ptrlvHeadLineNews=0x7f050025;
         public static final int pullDownFromTop=0x7f050005;
         public static final int pullFromEnd=0x7f050002;
         public static final int pullFromStart=0x7f050001;
         public static final int pullUpFromBottom=0x7f050006;
-        public static final int pull_to_refresh_image=0x7f050020;
-        public static final int pull_to_refresh_progress=0x7f050021;
-        public static final int pull_to_refresh_sub_text=0x7f050023;
-        public static final int pull_to_refresh_text=0x7f050022;
+        public static final int pull_to_refresh_image=0x7f050028;
+        public static final int pull_to_refresh_progress=0x7f050029;
+        public static final int pull_to_refresh_sub_text=0x7f05002b;
+        public static final int pull_to_refresh_text=0x7f05002a;
         public static final int right=0x7f05000d;
-        public static final int rlAdv=0x7f050024;
+        public static final int rlAdv=0x7f05002c;
+        public static final int rl_user=0x7f050012;
         public static final int rotate=0x7f050007;
         public static final int scrollview=0x7f05000b;
         public static final int selected_view=0x7f050010;
-        public static final int slidingmenumain=0x7f050038;
-        public static final int textView1=0x7f05001e;
-        public static final int textView2=0x7f05002c;
-        public static final int textView3=0x7f05002f;
-        public static final int textView4=0x7f050033;
-        public static final int textView5=0x7f050036;
-        public static final int textView6=0x7f05002b;
-        public static final int textView7=0x7f050032;
-        public static final int topBar=0x7f050011;
-        public static final int tvContent=0x7f05001b;
-        public static final int tvReview=0x7f05001c;
-        public static final int tvTag1=0x7f050014;
-        public static final int tvTag2=0x7f050015;
-        public static final int tvTag3=0x7f050016;
-        public static final int tvTitle=0x7f05001a;
-        public static final int viewGroup=0x7f050026;
-        public static final int vpAdv=0x7f050025;
-        public static final int vpViewPager1=0x7f050018;
+        public static final int slidingmenumain=0x7f050040;
+        public static final int textView1=0x7f050026;
+        public static final int textView2=0x7f050034;
+        public static final int textView3=0x7f050037;
+        public static final int textView4=0x7f05003b;
+        public static final int textView5=0x7f05003e;
+        public static final int textView6=0x7f050033;
+        public static final int textView7=0x7f05003a;
+        public static final int topBar=0x7f050019;
+        public static final int tvContent=0x7f050023;
+        public static final int tvReview=0x7f050024;
+        public static final int tvTag1=0x7f05001c;
+        public static final int tvTag2=0x7f05001d;
+        public static final int tvTag3=0x7f05001e;
+        public static final int tvTitle=0x7f050022;
+        public static final int user_name=0x7f050014;
+        public static final int user_password=0x7f050015;
+        public static final int viewGroup=0x7f05002e;
+        public static final int vpAdv=0x7f05002d;
+        public static final int vpViewPager1=0x7f050020;
         public static final int webview=0x7f05000a;
+        public static final int zhuce=0x7f050018;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int item_listview=0x7f030001;
-        public static final int layout1=0x7f030002;
-        public static final int layout2=0x7f030003;
-        public static final int layout3=0x7f030004;
-        public static final int pull_to_refresh_header_horizontal=0x7f030005;
-        public static final int pull_to_refresh_header_vertical=0x7f030006;
-        public static final int sliding_ad=0x7f030007;
-        public static final int slidingmenu_left=0x7f030008;
-        public static final int slidingmenu_right=0x7f030009;
-        public static final int slidingmenumain=0x7f03000a;
+        public static final int activity_login=0x7f030000;
+        public static final int activity_main=0x7f030001;
+        public static final int item_listview=0x7f030002;
+        public static final int layout1=0x7f030003;
+        public static final int layout2=0x7f030004;
+        public static final int layout3=0x7f030005;
+        public static final int pull_to_refresh_header_horizontal=0x7f030006;
+        public static final int pull_to_refresh_header_vertical=0x7f030007;
+        public static final int sliding_ad=0x7f030008;
+        public static final int slidingmenu_left=0x7f030009;
+        public static final int slidingmenu_right=0x7f03000a;
+        public static final int slidingmenumain=0x7f03000b;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
@@ -397,12 +412,14 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int action_settings=0x7f070008;
         public static final int app_name=0x7f070006;
         public static final int cusor=0x7f070012;
+        public static final int forget_pwd=0x7f070015;
         public static final int hello_world=0x7f070007;
         public static final int left_menu1=0x7f07000c;
         public static final int left_menu2=0x7f07000d;
         public static final int left_menu3=0x7f07000e;
         public static final int left_menu4=0x7f07000f;
         public static final int left_menu5=0x7f070010;
+        public static final int login=0x7f070016;
         public static final int menu1=0x7f070009;
         public static final int menu2=0x7f07000a;
         public static final int menu3=0x7f07000b;
@@ -416,6 +433,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pull_to_refresh_refreshing_label=0x7f070002;
         public static final int pull_to_refresh_release_label=0x7f070001;
         public static final int right_menu=0x7f070011;
+        public static final int user_name=0x7f070013;
+        public static final int user_pwd=0x7f070014;
+        public static final int zhuce=0x7f070017;
     }
     public static final class style {
         /** 

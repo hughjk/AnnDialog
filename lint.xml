@@ -3,4 +3,5 @@
     <issue id="HandlerLeak">
         <ignore path="src/mrpan/android/loveproject/MainActivity.java" />
     </issue>
+    <issue id="WorldReadableFiles" severity="ignore" />
 </lint>

@@ -4,4 +4,5 @@
  	<color name="menu_left_background_select">#22c85555</color>
  	<drawable name="clr_normal">#00000000</drawable>
  	<drawable name="clr_pressed">#22c85555</drawable>
+ 	<color name="devide_line">#CBCED2</color>
 </resources>

@@ -4,16 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
+import mrpan.android.loveproject.DB.DatabaseHelper;
 import mrpan.android.loveproject.view.AdViewPager;
-
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.AsyncTask;
@@ -28,16 +22,23 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -61,12 +62,15 @@ public class MainActivity extends Activity implements OnClickListener {
 	private int currentPage = 0;
 
 	private SlidingMenu slidingMenu = null;
+	
+	private DatabaseHelper db = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		db = DatabaseHelper.getDataBase(this);
+		db.getReadableDatabase();
 		// …Ë÷√≥ÈÃÎ≤Àµ•
 		slidingMenu = new SlidingMenu(this);
 		slidingMenu.setMode(SlidingMenu.LEFT_RIGHT);
@@ -92,7 +96,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				.setOnClickListener(this);
 		((RelativeLayout) findViewById(R.id.left_menu5))
 				.setOnClickListener(this);
-		((RelativeLayout) findViewById(R.id.loginNow))
+		((LinearLayout) findViewById(R.id.loginNow))
 		.setOnClickListener(this);
 		((TextView) findViewById(R.id.tvTag1)).setOnClickListener(this);
 		((TextView) findViewById(R.id.tvTag2)).setOnClickListener(this);
@@ -149,7 +153,10 @@ public class MainActivity extends Activity implements OnClickListener {
 			slidingMenu.showMenu();
 			break;
 		case R.id.loginNow:
-			Log.d("Main", "Login_Clicked");
+			Intent intent=new Intent();
+			intent.setClass(this, LoginActivity.class);
+			this.startActivity(intent);
+			finish();
 			break;
 		case R.id.tvTag1:
 			vpViewPager.setCurrentItem(0);

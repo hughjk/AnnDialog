@@ -14,7 +14,10 @@
     <string name="left_menu5">Menu5</string>
     <string name="right_menu">立即登录</string>
 	<string name="cusor"></string>
-	
-	
-	
+	<string name="user_name">输入用户名</string>
+    <string name="user_pwd">输入密码</string>
+    <string name="forget_pwd">忘记密码？</string>
+    <string name="login">登录</string>
+    <string name="zhuce">注册</string>
+		
 </resources>
