@@ -57,7 +57,7 @@ public class DataBaseAdapter {
 	}
 	
 	public boolean Login(String name,String password){
-		if(!IsHaveUser(name))
+		if(IsHaveUser(name))
 		{
 			Cursor cs=UserCusor(name);
 			if(cs!=null){

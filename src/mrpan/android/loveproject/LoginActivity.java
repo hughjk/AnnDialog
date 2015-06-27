@@ -60,6 +60,7 @@ public class LoginActivity extends Activity {
 				String pwd=password.getText().toString().trim();
 				if(db.Login(name, pwd))
 					{
+					System.out.println("11111111");
 						MyApplication myapp = (MyApplication) getApplication();
 						myapp.setLog(true);
 						myapp.setName(name);
@@ -67,6 +68,7 @@ public class LoginActivity extends Activity {
 						intent.setClass(mContext, MainActivity.class);
 						startActivity(intent);
 					}
+				System.out.println("22222222");
 					
 				
 			}
