@@ -327,8 +327,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int btn_personal=0x7f020010;
         public static final int btn_personal1=0x7f020011;
         public static final int btn_personal2=0x7f020012;
-        public static final int clr_normal=0x7f020021;
-        public static final int clr_pressed=0x7f020022;
+        public static final int clr_normal=0x7f020022;
+        public static final int clr_pressed=0x7f020023;
         public static final int cursor=0x7f020013;
         public static final int default_ptr_flip=0x7f020014;
         public static final int default_ptr_rotate=0x7f020015;
@@ -342,10 +342,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int menu_select=0x7f02001d;
         public static final int sex_fmale=0x7f02001e;
         public static final int sex_male=0x7f02001f;
-        public static final int zhuce_btn=0x7f020020;
+        public static final int vip2=0x7f020020;
+        public static final int zhuce_btn=0x7f020021;
     }
     public static final class id {
-        public static final int action_settings=0x7f05004d;
+        public static final int action_settings=0x7f050053;
         public static final int bNew=0x7f05001a;
         public static final int bPersonal=0x7f05001b;
         public static final int both=0x7f050003;
@@ -360,6 +361,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int imageView3=0x7f050042;
         public static final int imageView4=0x7f050045;
         public static final int imageView5=0x7f050049;
+        public static final int info=0x7f050051;
         public static final int ivCursor=0x7f05001f;
         public static final int ivPreview=0x7f050021;
         public static final int left=0x7f05000c;
@@ -368,6 +370,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int left_menu3=0x7f050041;
         public static final int left_menu4=0x7f050044;
         public static final int left_menu5=0x7f050048;
+        public static final int level=0x7f05004d;
+        public static final int linearLayout1=0x7f05004f;
         public static final int ll_user_info=0x7f050013;
         public static final int login=0x7f050017;
         public static final int loginNow=0x7f05004b;
@@ -390,7 +394,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int scrollView1=0x7f05002c;
         public static final int scrollview=0x7f05000b;
         public static final int selected_view=0x7f050010;
-        public static final int slidingmenumain=0x7f05004c;
+        public static final int sex=0x7f05004e;
+        public static final int sign=0x7f050050;
+        public static final int slidingmenumain=0x7f050052;
         public static final int t=0x7f050037;
         public static final int textView1=0x7f050026;
         public static final int textView2=0x7f05002e;
@@ -408,6 +414,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int tvTitle=0x7f050022;
         public static final int user_name=0x7f050014;
         public static final int user_password=0x7f050015;
+        public static final int user_photo=0x7f05004c;
         public static final int viewGroup=0x7f05003c;
         public static final int vpAdv=0x7f05003b;
         public static final int vpViewPager1=0x7f050020;
@@ -437,26 +444,33 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int sliding_ad=0x7f030009;
         public static final int slidingmenu_left=0x7f03000a;
         public static final int slidingmenu_right=0x7f03000b;
-        public static final int slidingmenumain=0x7f03000c;
+        public static final int slidingmenu_right_havelogin=0x7f03000c;
+        public static final int slidingmenumain=0x7f03000d;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
     }
     public static final class string {
         public static final int action_settings=0x7f070008;
+        public static final int age=0x7f07001b;
         public static final int app_name=0x7f070006;
+        public static final int chose_photo=0x7f070018;
         public static final int cusor=0x7f070012;
         public static final int forget_pwd=0x7f070015;
         public static final int hello_world=0x7f070007;
+        public static final int info=0x7f07001e;
         public static final int left_menu1=0x7f07000c;
         public static final int left_menu2=0x7f07000d;
         public static final int left_menu3=0x7f07000e;
         public static final int left_menu4=0x7f07000f;
         public static final int left_menu5=0x7f070010;
+        public static final int level=0x7f07001f;
         public static final int login=0x7f070016;
         public static final int menu1=0x7f070009;
         public static final int menu2=0x7f07000a;
         public static final int menu3=0x7f07000b;
+        public static final int name=0x7f070019;
+        public static final int password=0x7f07001a;
         /**  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
          */
@@ -467,6 +481,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pull_to_refresh_refreshing_label=0x7f070002;
         public static final int pull_to_refresh_release_label=0x7f070001;
         public static final int right_menu=0x7f070011;
+        public static final int sex=0x7f07001c;
+        public static final int sign=0x7f07001d;
         public static final int user_name=0x7f070013;
         public static final int user_pwd=0x7f070014;
         public static final int zhuce=0x7f070017;

@@ -1,5 +1,6 @@
 package mrpan.android.loveproject;
 
+import mrpan.android.loveproject.DB.DataBaseAdapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -27,12 +28,15 @@ public class LoginActivity extends Activity {
 	EditText password, user, Password;
 	String pwd, pwd2;
 
+	private DataBaseAdapter db = null;
+	
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		mContext = this;
+		db=new DataBaseAdapter(this);
 		rl_user = (RelativeLayout) findViewById(R.id.rl_user);
 		mLogin = (Button) findViewById(R.id.login);
 		password = (EditText) findViewById(R.id.user_password);
@@ -52,8 +56,13 @@ public class LoginActivity extends Activity {
 		mLogin.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(user.getText().equals("123")&&password.getText().equals("123"))
+				String name=user.getText().toString().trim();
+				String pwd=password.getText().toString().trim();
+				if(db.Login(name, pwd))
 					{
+						MyApplication myapp = (MyApplication) getApplication();
+						myapp.setLog(true);
+						myapp.setName(name);
 						Intent intent=new Intent();
 						intent.setClass(mContext, MainActivity.class);
 						startActivity(intent);

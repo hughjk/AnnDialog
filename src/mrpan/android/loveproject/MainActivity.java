@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import mrpan.android.loveproject.DB.DataBaseAdapter;
-import mrpan.android.loveproject.DB.DatabaseHelper;
 import mrpan.android.loveproject.bean.User;
 import mrpan.android.loveproject.view.AdViewPager;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.AsyncTask;
@@ -63,40 +63,53 @@ public class MainActivity extends Activity implements OnClickListener {
 	private List<View> advs = null;
 	private int currentPage = 0;
 
+	private static final int CHANGE_SIGN=1;
+	private static final int CHANGE_INFO=2;
+	
 	private SlidingMenu slidingMenu = null;
 	
 	private DataBaseAdapter db = null;
+	
+	public boolean log_State;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-//		db = new DataBaseAdapter(this);
-//		User user=new User();
-//		user.setName("admin");
-//		user.setPassword("123");
-//		user.setAge(22);
-//		user.setSex(true);
-//		user.setLevel(9);
-//		user.setSign("Love");
-//		user.setInfo("nothing");
-//		user.setPhoto(null);
-//		String str="";
-//		user.setTime_last(null);
-//		if(db.InsertUser(user)!=-1)
-//			Log.d("DEBUG", "成功~~~~");
+		db=new DataBaseAdapter(this);
+		MyApplication myapp = (MyApplication) getApplication();
+		log_State=myapp.isLog();
 		// 设置抽屉菜单
 		slidingMenu = new SlidingMenu(this);
 		slidingMenu.setMode(SlidingMenu.LEFT_RIGHT);
 		slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN); // 触摸边界拖出菜单
 		slidingMenu.setMenu(R.layout.slidingmenu_left);
-		slidingMenu.setSecondaryMenu(R.layout.slidingmenu_right);
+		if(myapp.isLog()){
+			slidingMenu.setSecondaryMenu(R.layout.slidingmenu_right_havelogin);
+			UserInfo(myapp.getName());
+		}
+		else
+			slidingMenu.setSecondaryMenu(R.layout.slidingmenu_right);
 		slidingMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+		
 		// 将抽屉菜单与主页面关联起来
 		slidingMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
 		findViewById();
 	}
-
+	void UserInfo(String Name){
+		User user=db.getUser(Name);
+		if(user!=null)
+		{
+			((TextView)findViewById(R.id.sign)).setText(user.getSign());
+			Bitmap photo=ImageTools.byteToBitmap(user.getPhoto());
+			((ImageView)findViewById(R.id.user_photo)).setImageBitmap(photo);
+			if(user.isSex())
+				((ImageView)findViewById(R.id.sex)).setImageResource(R.drawable.sex_fmale);
+			else
+				((ImageView)findViewById(R.id.sex)).setImageResource(R.drawable.sex_male);
+			((TextView)findViewById(R.id.info)).setText(user.getSign());
+		}
+	}
 	void findViewById() {
 		findViewById(R.id.bNew).setOnClickListener(this);
 		findViewById(R.id.bPersonal).setOnClickListener(this);
@@ -141,6 +154,12 @@ public class MainActivity extends Activity implements OnClickListener {
 		initPullToRefreshListView(ptrlvHeadLineNews, newAdapter);
 		// initPullToRefreshListView(ptrlvEntertainmentNews, newAdapter);
 		// initPullToRefreshListView(ptrlvFinanceNews, newAdapter);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 	/**
@@ -443,6 +462,18 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	}
 
+	class MyHandler extends Handler {
+
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case 1: // 更新签名列表
+				break;
+			case 2:
+				break;
+			}
+		}
+	}
 	/**
 	 * 请求网络获得新闻信息
 	 * 
@@ -486,6 +517,6 @@ public class MainActivity extends Activity implements OnClickListener {
 			}
 			mPtrlv.onRefreshComplete();
 		}
-
+		
 	}
 }

@@ -32,7 +32,7 @@ public class DataBaseAdapter {
 		return mDb.insert("User", null, values);
 	}
 
-	public long UpdateUser(User user, int ID) {
+	public long UpdateUser(User user, int Name) {
 		ContentValues values = new ContentValues();
 
 		values.put("user_name", user.getName());
@@ -45,17 +45,39 @@ public class DataBaseAdapter {
 		values.put("user_level", user.getLevel());
 		values.put("time_last", user.getTime_last());
 
-		return mDb.update("User", values, "where user_id='" + ID + "'", null);
+		return mDb.update("User", values, "where user_name='" + Name + "'", null);
 	}
 
-	public long deleteUser(String ID) {
-		return mDb.delete("User", "user_id='" + ID + "'", null);
+	public long deleteUser(String Name) {
+		return mDb.delete("User", "user_name='" + Name + "'", null);
 	}
 	
-	public User getUser(String ID)
+	public boolean Login(String name,String password){
+		if(!IsHaveUser(name))
+		{
+			Cursor cs=UserCusor(name);
+			if(cs!=null){
+				while(cs.moveToNext()){
+					String pwd=cs.getString(cs.getColumnIndex("user_password"));
+					if(password.equals(pwd.trim()))
+						return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean IsHaveUser(String name){
+		Cursor cs=UserCusor(name);
+		if(cs.getCount()<1)
+			return false;
+		return true;
+	}
+	
+	public User getUser(String Name)
 	{
 		User user=new User();
-		Cursor cs=mDb.query("User", null, "where user_id='"+ID+"'", null, null, null, null);
+		Cursor cs=UserCusor(Name);
 		if(cs!=null)
 		{
 			while(cs.moveToNext()){
@@ -70,6 +92,12 @@ public class DataBaseAdapter {
 			}
 		}
 		return user;
+	}
+	
+	private Cursor UserCusor(String Name)
+	{
+		Cursor cs=mDb.query("User", null, "where user_name='"+Name+"'", null, null, null, null);
+		return cs;
 	}
 
 }
