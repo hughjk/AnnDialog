@@ -71,20 +71,20 @@ public class MainActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		db = new DataBaseAdapter(this);
-		User user=new User();
-		user.setName("admin");
-		user.setPassword("123");
-		user.setAge(22);
-		user.setSex(true);
-		user.setLevel(9);
-		user.setSign("Love");
-		user.setInfo("nothing");
-		user.setPhoto(null);
-		String str="";
-		user.setTime_last(null);
-		if(db.InsertUser(user)!=-1)
-			Log.d("DEBUG", "成功~~~~");
+//		db = new DataBaseAdapter(this);
+//		User user=new User();
+//		user.setName("admin");
+//		user.setPassword("123");
+//		user.setAge(22);
+//		user.setSex(true);
+//		user.setLevel(9);
+//		user.setSign("Love");
+//		user.setInfo("nothing");
+//		user.setPhoto(null);
+//		String str="";
+//		user.setTime_last(null);
+//		if(db.InsertUser(user)!=-1)
+//			Log.d("DEBUG", "成功~~~~");
 		// 设置抽屉菜单
 		slidingMenu = new SlidingMenu(this);
 		slidingMenu.setMode(SlidingMenu.LEFT_RIGHT);

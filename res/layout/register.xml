@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_slidingmenu_left"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp" >
+
+        <mrpan.android.loveproject.view.CircleImageView
+            android:id="@+id/zhuce_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/biz_pc_main_info_profile_avatar_bg_dark" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="22dp"
+            android:layout_toRightOf="@+id/zhuce_photo"
+            android:text="点击选择头像"
+            android:textColor="#ffffff" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp" >
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="用户名:"
+            android:textColor="#ffffff"
+            android:textSize="19dp" />
+
+        <EditText
+            android:id="@+id/zhuce_name"
+            android:layout_width="176dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:background="@drawable/login_et_bg"
+            android:gravity="center"
+            android:hint="@string/user_name"
+            android:inputType="text"
+            android:padding="5dp"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="密码:"
+            android:textColor="#ffffff"
+            android:textSize="19dp" />
+
+        <EditText
+            android:id="@+id/zhuce_password"
+            android:layout_width="176dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:background="@drawable/login_et_bg"
+            android:gravity="center"
+            android:hint="@string/user_pwd"
+            android:inputType="text"
+            android:padding="5dp"
+            android:textAlignment="center" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp" >
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="性别:"
+            android:textColor="#ffffff"
+            android:textSize="19dp" />
+
+        <RadioGroup
+            android:id="@+id/zhuce_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:orientation="horizontal">"
+
+            <RadioButton
+                android:id="@+id/zhuce_nan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/sex_fmale" />
+
+            <RadioButton
+                android:id="@+id/zhuce_nv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 />
+			<ImageView
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/sex_male" />
+
+			<TextView
+			    android:layout_width="50dp"
+			    android:layout_height="wrap_content"
+			    android:text="年龄:"
+			    android:textColor="#ffffff"
+			    android:textSize="19dp" />
+
+			<EditText
+			    android:id="@+id/zhuce_age"
+			    android:layout_width="50dp"
+			    android:layout_height="wrap_content"
+			    android:layout_margin="2dp"
+			    android:layout_weight="1"
+			    android:background="@drawable/login_et_bg"
+			    android:ems="10"
+			    android:gravity="center"
+			    android:hint="年龄"
+			    android:inputType="number"
+			    android:padding="5dp"
+			    android:textAlignment="center" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="10dp" >
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="签名:"
+            android:textColor="#ffffff"
+            android:textSize="19dp" />
+
+        <EditText
+            android:id="@+id/zhuce_sign"
+            android:layout_width="176dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:background="@drawable/login_et_bg"
+            android:ems="10"
+            android:hint="“签名...”"
+            android:inputType="text"
+            android:padding="5dp"
+            android:textAlignment="center" >
+        </EditText>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="104dp"
+        android:layout_gravity="top"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:id="@+id/t"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="简介:"
+            android:textColor="#ffffff"
+            android:textSize="19dp" />
+
+        <EditText
+            android:id="@+id/zhuce_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/t"
+            android:background="@drawable/login_et_bg"
+            android:ems="10"
+            android:hint="对自我的一些简介"
+            android:inputType="textMultiLine"
+            android:padding="15dp" >
+
+        </EditText>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/zhuce_btn"
+        	android:text="@string/zhuce"
+        	android:textColor="#E3170D"/>
+
+    </LinearLayout>
+
+</LinearLayout>

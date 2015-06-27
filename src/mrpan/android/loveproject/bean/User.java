@@ -5,6 +5,7 @@ import java.util.Date;
 import android.graphics.Bitmap;
 
 public class User {
+	int ID;
 	String Name;
 	String Password;
 	boolean Sex;
@@ -14,6 +15,14 @@ public class User {
 	byte[] Photo;
 	int Level;
 	String Time_last;
+
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
 
 	public String getName() {
 		return Name;
@@ -63,8 +72,6 @@ public class User {
 		Info = info;
 	}
 
-	
-
 	public int getLevel() {
 		return Level;
 	}
@@ -88,7 +95,5 @@ public class User {
 	public void setTime_last(String time_last) {
 		Time_last = time_last;
 	}
-
-	
 
 }

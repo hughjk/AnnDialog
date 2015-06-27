@@ -3,6 +3,7 @@ package mrpan.android.loveproject.DB;
 import mrpan.android.loveproject.bean.User;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class DataBaseAdapter {
@@ -49,6 +50,26 @@ public class DataBaseAdapter {
 
 	public long deleteUser(String ID) {
 		return mDb.delete("User", "user_id='" + ID + "'", null);
+	}
+	
+	public User getUser(String ID)
+	{
+		User user=new User();
+		Cursor cs=mDb.query("User", null, "where user_id='"+ID+"'", null, null, null, null);
+		if(cs!=null)
+		{
+			while(cs.moveToNext()){
+				user.setID(cs.getInt(cs.getColumnIndex("user_id")));
+				user.setName(cs.getString(cs.getColumnIndex("user_name")));
+				user.setSex(cs.getInt(cs.getColumnIndex("user_sex"))==1?true:false);
+				user.setSign(cs.getString(cs.getColumnIndex("user_sign")));
+				user.setInfo(cs.getString(cs.getColumnIndex("user_info")));
+				user.setLevel(cs.getInt(cs.getColumnIndex("user_level")));
+				user.setPhoto(cs.getBlob(cs.getColumnIndex("user_photo")));
+				user.setTime_last(cs.getString(cs.getColumnIndex("time_last")));
+			}
+		}
+		return user;
 	}
 
 }
