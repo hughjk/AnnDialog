@@ -69,6 +69,7 @@ public class RegisterActivity extends Activity implements OnClickListener{
 		}
 		
 	}
+	
 	void checkFile(String path)
 	{
 		File dir = new File(path);
@@ -77,7 +78,7 @@ public class RegisterActivity extends Activity implements OnClickListener{
 		}
 	}
 	//ΩÿÕº
-	public void startPhotoZoom(Uri uri,int width,int heigth,int code) {
+	public void startPhotoZoom(Uri uri,int width,int heigth,int requestCode) {
 	                Intent intent = new Intent("com.android.camera.action.CROP");
 	                intent.setDataAndType(uri, "image/*");
 	                // …Ë÷√≤√ºÙ
@@ -89,7 +90,7 @@ public class RegisterActivity extends Activity implements OnClickListener{
 	                intent.putExtra("outputX", width);
 	                intent.putExtra("outputY", heigth);
 	                intent.putExtra("return-data", true);
-	                startActivityForResult(intent, code);
+	                startActivityForResult(intent, requestCode);
 	        }
 
 	@Override

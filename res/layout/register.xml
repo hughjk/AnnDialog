@@ -5,7 +5,17 @@
     android:background="@drawable/bg_slidingmenu_left"
     android:orientation="vertical" >
 
-    <RelativeLayout
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+    		android:layout_height="match_parent"
+    		android:background="@drawable/bg_slidingmenu_left"
+   			android:orientation="vertical" >
+   			<RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp" >
@@ -177,6 +187,7 @@
 
     </LinearLayout>
 
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="104dp"
@@ -214,7 +225,7 @@
         android:orientation="vertical" >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/zhuce_zhuce"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
@@ -225,5 +236,9 @@
         	android:textColor="#E3170D"/>
 
     </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    
 
 </LinearLayout>

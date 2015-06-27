@@ -23,15 +23,17 @@ import android.graphics.RectF;
 import android.graphics.Shader.TileMode;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.widget.ImageView;
 
 /**
- * Tools for handler picture
- * 
+ * @author MrPan
+ * @since 2015-06-27
+ * @email wslongchen@vip.qq.com
  */
 public final class ImageTools {
 
 	/**
-	 * Transfer drawable to bitmap
+	 * 转换drawable为Bitmap
 	 * 
 	 * @param drawable
 	 * @return
@@ -50,7 +52,21 @@ public final class ImageTools {
 	}
 
 	/**
-	 * Bitmap to drawable
+	 * 获取ImageView总的bitmap
+	 * 
+	 * @param image
+	 * @return
+	 */
+	public static Bitmap getBitmap(ImageView image)
+	{
+		image.setDrawingCacheEnabled(true);
+		Bitmap bitmap=Bitmap.createBitmap(image.getDrawingCache());
+		image.setDrawingCacheEnabled(false);
+		return bitmap;
+	}
+	
+	/**
+	 * Bitmap转drawable
 	 * 
 	 * @param bitmap
 	 * @return
@@ -60,7 +76,7 @@ public final class ImageTools {
 	}
 
 	/**
-	 * Input stream to bitmap
+	 * 把流stream转成bitmap
 	 * 
 	 * @param inputStream
 	 * @return
@@ -72,7 +88,7 @@ public final class ImageTools {
 	}
 
 	/**
-	 * Byte transfer to bitmap
+	 * 把字节数组转成bitmap
 	 * 
 	 * @param byteArray
 	 * @return
@@ -87,7 +103,7 @@ public final class ImageTools {
 	}
 
 	/**
-	 * Byte transfer to drawable
+	 * 把字节数组转成drawable
 	 * 
 	 * @param byteArray
 	 * @return
@@ -101,7 +117,7 @@ public final class ImageTools {
 	}
 
 	/**
-	 * Bitmap transfer to bytes
+	 * 把Bitmap转成字节数组bytes
 	 * 
 	 * @param byteArray
 	 * @return
@@ -117,7 +133,7 @@ public final class ImageTools {
 	}
 
 	/**
-	 * Drawable transfer to bytes
+	 * 把Drawable转成字节数组bytes
 	 * 
 	 * @param drawable
 	 * @return
@@ -131,23 +147,7 @@ public final class ImageTools {
 	}
 
 	/**
-	 * Base64 to byte[]
-//	 */
-//	public static byte[] base64ToBytes(String base64) throws IOException {
-//		byte[] bytes = Base64.decode(base64);
-//		return bytes;
-//	}
-//
-//	/**
-//	 * Byte[] to base64
-//	 */
-//	public static String bytesTobase64(byte[] bytes) {
-//		String base64 = Base64.encode(bytes);
-//		return base64;
-//	}
-
-	/**
-	 * Create reflection images
+	 * 从源中反射图像
 	 * 
 	 * @param bitmap
 	 * @return
@@ -188,7 +188,7 @@ public final class ImageTools {
 	}
 
 	/**
-	 * Get rounded corner images
+	 * 获取圆角图片
 	 * 
 	 * @param bitmap
 	 * @param roundPx
@@ -215,7 +215,7 @@ public final class ImageTools {
 	}
 
 	/**
-	 * Resize the bitmap
+	 * 重设图像尺寸
 	 * 
 	 * @param bitmap
 	 * @param width
@@ -234,7 +234,7 @@ public final class ImageTools {
 	}
 
 	/**
-	 * Resize the drawable
+	 * 重设drawable
 	 * @param drawable
 	 * @param w
 	 * @param h
@@ -254,7 +254,7 @@ public final class ImageTools {
 	}
 	
 	/**
-	 * Get images from SD card by path and the name of image
+	 * 根据地址和名称获取SD卡中png转成的bitmap
 	 * @param photoName
 	 * @return
 	 */
@@ -268,7 +268,7 @@ public final class ImageTools {
 	}
 	
 	/**
-	 * Check the SD card 
+	 * 检查SD卡
 	 * @return
 	 */
 	public static boolean checkSDCardAvailable(){
@@ -276,7 +276,7 @@ public final class ImageTools {
 	}
 	
 	/**
-	 * Get image from SD card by path and the name of image
+	 * 寻找SD卡中是否存在某图片
 	 * @param fileName
 	 * @return
 	 */
@@ -311,7 +311,7 @@ public final class ImageTools {
 	}
 	
 	/**
-	 * Save image to the SD card 
+	 * 保存图片在SD卡中
 	 * @param photoBitmap
 	 * @param photoName
 	 * @param path
@@ -350,7 +350,7 @@ public final class ImageTools {
 	}
 	
 	/**
-	 * Delete the image from SD card
+	 * 删除SD卡中的文件
 	 * @param context
 	 * @param path
 	 * file:///sdcard/temp.jpg
@@ -364,7 +364,11 @@ public final class ImageTools {
 			}
 		}
 	}
-	
+	/**
+	 * 删除SD卡中的文件
+	 * @param context
+	 * @param path
+	 */
 	public static void deletePhotoAtPathAndName(String path,String fileName){
 		if (checkSDCardAvailable()) {
 			File folder = new File(path);
