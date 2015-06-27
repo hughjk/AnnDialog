@@ -35,17 +35,21 @@ public class DataBaseAdapter {
 	public long UpdateUser(User user, int Name) {
 		ContentValues values = new ContentValues();
 
-		values.put("user_name", user.getName());
-		values.put("user_password", user.getPassword());
+		//values.put("user_name", user.getName());
+		if(!user.getPassword().isEmpty())
+			values.put("user_password", user.getPassword());
 		values.put("user_sex", user.isSex() == true ? 1 : 0);
 		values.put("user_age", user.getAge());
-		values.put("user_sign", user.getSign());
-		values.put("user_info", user.getInfo());
-		values.put("user_photo", user.getPhoto());
+		if(!user.getSign().isEmpty())
+			values.put("user_sign", user.getSign());
+		if(!user.getInfo().isEmpty())
+			values.put("user_info", user.getInfo());
+		if(user.getPhoto().length>0)
+			values.put("user_photo", user.getPhoto());
 		values.put("user_level", user.getLevel());
 		values.put("time_last", user.getTime_last());
 
-		return mDb.update("User", values, "where user_name='" + Name + "'", null);
+		return mDb.update("User", values, "user_name='" + Name + "'", null);
 	}
 
 	public long deleteUser(String Name) {
@@ -96,7 +100,7 @@ public class DataBaseAdapter {
 	
 	private Cursor UserCusor(String Name)
 	{
-		Cursor cs=mDb.query("User", null, "where user_name='"+Name+"'", null, null, null, null);
+		Cursor cs=mDb.query("User", null, "user_name='"+Name+"'", null, null, null, null);
 		return cs;
 	}
 
