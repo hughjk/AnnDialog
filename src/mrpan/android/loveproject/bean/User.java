@@ -16,6 +16,18 @@ public class User {
 	int Level;
 	String Time_last;
 
+	public User(){
+		Name="";
+		Password="";
+		Sex=true;
+		Age=0;
+		Sign="";
+		Info="";
+		Photo=new byte[]{};
+		Level=0;
+		Time_last="";
+	}
+	
 	public int getID() {
 		return ID;
 	}

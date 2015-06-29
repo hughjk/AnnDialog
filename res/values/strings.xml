@@ -27,5 +27,8 @@
     <string name="sign">签名:</string>
     <string name="info">简介:</string>
     <string name="level">等级:</string>
+    <string name="settings">设置</string>
+    <string name="change_user">切换用户</string>
+    
 		
 </resources>

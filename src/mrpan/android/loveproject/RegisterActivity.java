@@ -123,6 +123,10 @@ public class RegisterActivity extends Activity implements OnClickListener {
 				user.setPhoto(Photo);
 				if(db.InsertUser(user)!=-1){
 					Toast.makeText(mContext, "×¢²á³É¹¦£¡", Toast.LENGTH_LONG).show();
+					Intent intent=new Intent();
+					intent.setClass(mContext, LoginActivity.class);
+					startActivity(intent);
+					finish();	
 				}
 			}
 			break;

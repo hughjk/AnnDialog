@@ -52,10 +52,12 @@ public class MainActivity extends Activity implements OnClickListener {
 	private int offset; // 间隔
 	private int cursorWidth; // 游标的长度
 	private int originalIndex = 0;
-	private ImageView cursor = null;
+	private ImageView cursor = null, photo, sex;
 
 	private PullToRefreshListView ptrlvHeadLineNews = null;
 	private NewListAdapter newAdapter = null;
+
+	private TextView sign, info;
 
 	private AdViewPager vpAdv = null;
 	private ViewGroup vg = null;
@@ -63,54 +65,64 @@ public class MainActivity extends Activity implements OnClickListener {
 	private List<View> advs = null;
 	private int currentPage = 0;
 
-	private static final int CHANGE_SIGN=1;
-	private static final int CHANGE_INFO=2;
-	
+	private static final int CHANGE_SIGN = 1;
+	private static final int CHANGE_INFO = 2;
+
 	private SlidingMenu slidingMenu = null;
-	
+
 	private DataBaseAdapter db = null;
-	
+
 	public boolean log_State;
+
+	private MyApplication myapp;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		db=new DataBaseAdapter(this);
-		MyApplication myapp = (MyApplication) getApplication();
-		log_State=myapp.isLog();
+		db = new DataBaseAdapter(this);
+		myapp = (MyApplication) getApplication();
+		log_State = myapp.isLog();
 		// 设置抽屉菜单
 		slidingMenu = new SlidingMenu(this);
 		slidingMenu.setMode(SlidingMenu.LEFT_RIGHT);
 		slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN); // 触摸边界拖出菜单
 		slidingMenu.setMenu(R.layout.slidingmenu_left);
-		if(myapp.isLog()){
+		if (myapp.isLog()) {
 			slidingMenu.setSecondaryMenu(R.layout.slidingmenu_right_havelogin);
-			UserInfo(myapp.getName());
-		}
-		else
+			// UserInfo(myapp.getName());
+		} else
 			slidingMenu.setSecondaryMenu(R.layout.slidingmenu_right);
 		slidingMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-		
+
 		// 将抽屉菜单与主页面关联起来
 		slidingMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
 		findViewById();
 	}
-	void UserInfo(String Name){
-		User user=db.getUser(Name);
-		if(user!=null)
-		{
-			((TextView)findViewById(R.id.sign)).setText(user.getSign());
-			Bitmap photo=ImageTools.byteToBitmap(user.getPhoto());
-			((ImageView)findViewById(R.id.user_photo)).setImageBitmap(photo);
-			if(user.isSex())
-				((ImageView)findViewById(R.id.sex)).setImageResource(R.drawable.sex_fmale);
+
+	void UserInfo(String Name) {
+		info = (TextView) findViewById(R.id.info);
+		sign = (TextView) findViewById(R.id.sign);
+		photo = (ImageView) findViewById(R.id.user_photo);
+		sex = (ImageView) findViewById(R.id.sex);
+		User user = db.getUser(Name);
+		if (user != null) {
+			sign.setText(user.getSign());
+			byte[] p=user.getPhoto();
+			if (null != p && p.length > 0) {
+				Bitmap photo = ImageTools.byteToBitmap(p);
+				(this.photo).setImageBitmap(photo);
+			}
+			if (user.isSex())
+				sex.setImageResource(R.drawable.sex_fmale);
 			else
-				((ImageView)findViewById(R.id.sex)).setImageResource(R.drawable.sex_male);
-			((TextView)findViewById(R.id.info)).setText(user.getSign());
+				sex.setImageResource(R.drawable.sex_male);
+			info.setText(user.getInfo());
 		}
 	}
+
 	void findViewById() {
+
 		findViewById(R.id.bNew).setOnClickListener(this);
 		findViewById(R.id.bPersonal).setOnClickListener(this);
 		((RelativeLayout) findViewById(R.id.left_menu1))
@@ -123,8 +135,9 @@ public class MainActivity extends Activity implements OnClickListener {
 				.setOnClickListener(this);
 		((RelativeLayout) findViewById(R.id.left_menu5))
 				.setOnClickListener(this);
-		((LinearLayout) findViewById(R.id.loginNow))
-		.setOnClickListener(this);
+		((LinearLayout) findViewById(R.id.loginNow)).setOnClickListener(this);
+		((LinearLayout) findViewById(R.id.setting)).setOnClickListener(this);
+		
 		((TextView) findViewById(R.id.tvTag1)).setOnClickListener(this);
 		((TextView) findViewById(R.id.tvTag2)).setOnClickListener(this);
 		((TextView) findViewById(R.id.tvTag3)).setOnClickListener(this);
@@ -154,6 +167,10 @@ public class MainActivity extends Activity implements OnClickListener {
 		initPullToRefreshListView(ptrlvHeadLineNews, newAdapter);
 		// initPullToRefreshListView(ptrlvEntertainmentNews, newAdapter);
 		// initPullToRefreshListView(ptrlvFinanceNews, newAdapter);
+
+		if (myapp.isLog()) {
+			UserInfo(myapp.getName());
+		}
 	}
 
 	@Override
@@ -181,12 +198,13 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
+		Intent intent;
 		switch (v.getId()) {
 		case R.id.bNew:
 			slidingMenu.showMenu();
 			break;
 		case R.id.loginNow:
-			Intent intent=new Intent();
+			intent = new Intent();
 			intent.setClass(this, LoginActivity.class);
 			this.startActivity(intent);
 			finish();
@@ -217,11 +235,19 @@ public class MainActivity extends Activity implements OnClickListener {
 		case R.id.bPersonal:
 			slidingMenu.showSecondaryMenu();
 			break;
+		case R.id.setting:
+			break;
+		case R.id.change:
+			intent=new Intent();
+			intent.setClass(this, LoginActivity.class);
+			startActivity(intent);
+			finish();
+			break;
 		}
 	}
 
 	/**
-	 * 获取N条模拟的新闻数据<br>
+	 * 获取N条模拟的新闻数据
 	 * 打包成ArrayList返回
 	 * 
 	 * @return
@@ -474,6 +500,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			}
 		}
 	}
+
 	/**
 	 * 请求网络获得新闻信息
 	 * 
@@ -517,6 +544,6 @@ public class MainActivity extends Activity implements OnClickListener {
 			}
 			mPtrlv.onRefreshComplete();
 		}
-		
+
 	}
 }

@@ -327,8 +327,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int btn_personal=0x7f020010;
         public static final int btn_personal1=0x7f020011;
         public static final int btn_personal2=0x7f020012;
-        public static final int clr_normal=0x7f020022;
-        public static final int clr_pressed=0x7f020023;
+        public static final int clr_normal=0x7f020023;
+        public static final int clr_pressed=0x7f020024;
         public static final int cursor=0x7f020013;
         public static final int default_ptr_flip=0x7f020014;
         public static final int default_ptr_rotate=0x7f020015;
@@ -340,16 +340,18 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int login_btn=0x7f02001b;
         public static final int login_et_bg=0x7f02001c;
         public static final int menu_select=0x7f02001d;
-        public static final int sex_fmale=0x7f02001e;
-        public static final int sex_male=0x7f02001f;
-        public static final int vip2=0x7f020020;
-        public static final int zhuce_btn=0x7f020021;
+        public static final int settings=0x7f02001e;
+        public static final int sex_fmale=0x7f02001f;
+        public static final int sex_male=0x7f020020;
+        public static final int vip2=0x7f020021;
+        public static final int zhuce_btn=0x7f020022;
     }
     public static final class id {
-        public static final int action_settings=0x7f050053;
+        public static final int action_settings=0x7f050055;
         public static final int bNew=0x7f05001a;
         public static final int bPersonal=0x7f05001b;
         public static final int both=0x7f050003;
+        public static final int change=0x7f050052;
         public static final int disabled=0x7f050000;
         public static final int fl_inner=0x7f050027;
         public static final int flip=0x7f050008;
@@ -394,9 +396,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int scrollView1=0x7f05002c;
         public static final int scrollview=0x7f05000b;
         public static final int selected_view=0x7f050010;
+        public static final int setting=0x7f050053;
         public static final int sex=0x7f05004e;
         public static final int sign=0x7f050050;
-        public static final int slidingmenumain=0x7f050052;
+        public static final int slidingmenumain=0x7f050054;
         public static final int t=0x7f050037;
         public static final int textView1=0x7f050026;
         public static final int textView2=0x7f05002e;
@@ -454,6 +457,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int action_settings=0x7f070008;
         public static final int age=0x7f07001b;
         public static final int app_name=0x7f070006;
+        public static final int change_user=0x7f070021;
         public static final int chose_photo=0x7f070018;
         public static final int cusor=0x7f070012;
         public static final int forget_pwd=0x7f070015;
@@ -481,6 +485,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pull_to_refresh_refreshing_label=0x7f070002;
         public static final int pull_to_refresh_release_label=0x7f070001;
         public static final int right_menu=0x7f070011;
+        public static final int settings=0x7f070020;
         public static final int sex=0x7f07001c;
         public static final int sign=0x7f07001d;
         public static final int user_name=0x7f070013;

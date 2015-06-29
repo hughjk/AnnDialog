@@ -5,8 +5,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.SpannableString;
+import android.text.TextWatcher;
 import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,6 +17,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,10 +27,12 @@ public class LoginActivity extends Activity {
 	private Context mContext;
 	SharedPreferences preferences;
 	private RelativeLayout rl_user;
-	private Button mLogin;
+	private Button mLogin,mZhuce;
 	private TextView tvForgetpwd;
 	EditText password, user, Password;
 	String pwd, pwd2;
+	
+	private ImageView login_picture;
 
 	private DataBaseAdapter db = null;
 	
@@ -39,13 +45,51 @@ public class LoginActivity extends Activity {
 		db=new DataBaseAdapter(this);
 		rl_user = (RelativeLayout) findViewById(R.id.rl_user);
 		mLogin = (Button) findViewById(R.id.login);
+		login_picture=(ImageView)findViewById(R.id.login_picture);
+		mZhuce=(Button)findViewById(R.id.zhuce);
 		password = (EditText) findViewById(R.id.user_password);
 		tvForgetpwd = (TextView) findViewById(R.id.forgetpwd);
 		user = (EditText) findViewById(R.id.user_name);
-		preferences = getSharedPreferences("ganbuname", MODE_WORLD_READABLE);
-		String name = preferences.getString("ganbuname", null);
-		pwd2 = preferences.getString("ganbupassword", null);
-		user.setText(name);
+//		preferences = getSharedPreferences("ganbuname", MODE_WORLD_READABLE);
+//		String name = preferences.getString("ganbuname", null);
+//		pwd2 = preferences.getString("ganbupassword", null);
+//		user.setText(name);
+		user.addTextChangedListener(new TextWatcher(){
+
+			@Override
+			public void afterTextChanged(Editable arg0) {
+				// TODO Auto-generated method stub
+				if (arg0.length() != 0) {
+					String name=user.getText().toString().trim();
+					// mHandler.sendEmptyMessage(CHANGE_INPUT);
+					if(db.IsHaveUser(name)){
+						byte[] photo=db.getUser(name).getPhoto();
+						
+						if (null != photo && photo.length > 0) {
+							Bitmap bitmap = ImageTools.byteToBitmap(photo);
+							login_picture.setImageBitmap(bitmap);
+						}
+						else
+						{
+							login_picture.setImageResource(R.drawable.biz_pc_main_info_profile_avatar_bg_dark);
+						}
+					}
+				}
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence arg0, int arg1,
+					int arg2, int arg3) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
+					int arg3) {
+				// TODO Auto-generated method stub
+				
+			}});
 		Animation anim = AnimationUtils.loadAnimation(mContext,
 				R.anim.login_anim);
 		anim.setFillAfter(true);
@@ -53,6 +97,15 @@ public class LoginActivity extends Activity {
 		SpannableString content = new SpannableString("Íü¼ÇÃÜÂë£¿");
 		content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
 		tvForgetpwd.setText(content);
+		mZhuce.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+						Intent intent=new Intent();
+						intent.setClass(mContext, RegisterActivity.class);
+						startActivity(intent);
+			   //finish();	
+			}
+		});
 		mLogin.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -60,15 +113,16 @@ public class LoginActivity extends Activity {
 				String pwd=password.getText().toString().trim();
 				if(db.Login(name, pwd))
 					{
-					System.out.println("11111111");
+					//System.out.println("11111111");
 						MyApplication myapp = (MyApplication) getApplication();
 						myapp.setLog(true);
 						myapp.setName(name);
 						Intent intent=new Intent();
 						intent.setClass(mContext, MainActivity.class);
 						startActivity(intent);
+						finish();
 					}
-				System.out.println("22222222");
+			//	System.out.println("22222222");
 					
 				
 			}

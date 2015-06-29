@@ -82,6 +82,7 @@ public class DataBaseAdapter {
 	{
 		User user=new User();
 		Cursor cs=UserCusor(Name);
+	
 		if(cs!=null)
 		{
 			while(cs.moveToNext()){
@@ -91,7 +92,10 @@ public class DataBaseAdapter {
 				user.setSign(cs.getString(cs.getColumnIndex("user_sign")));
 				user.setInfo(cs.getString(cs.getColumnIndex("user_info")));
 				user.setLevel(cs.getInt(cs.getColumnIndex("user_level")));
-				user.setPhoto(cs.getBlob(cs.getColumnIndex("user_photo")));
+//				byte[] photo=cs.getBlob(cs.getColumnIndex("user_photo"));
+				//System.out.println("photo_size:"+photo.length);
+//				if(photo.length>0)
+					user.setPhoto(cs.getBlob(cs.getColumnIndex("user_photo")));
 				user.setTime_last(cs.getString(cs.getColumnIndex("time_last")));
 			}
 		}
