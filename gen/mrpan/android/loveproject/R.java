@@ -347,11 +347,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int zhuce_btn=0x7f020022;
     }
     public static final class id {
-        public static final int action_settings=0x7f050055;
+        public static final int action_settings=0x7f050056;
         public static final int bNew=0x7f05001a;
         public static final int bPersonal=0x7f05001b;
         public static final int both=0x7f050003;
-        public static final int change=0x7f050052;
+        public static final int change=0x7f050054;
         public static final int disabled=0x7f050000;
         public static final int fl_inner=0x7f050027;
         public static final int flip=0x7f050008;
@@ -375,6 +375,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int level=0x7f05004d;
         public static final int linearLayout1=0x7f05004f;
         public static final int ll_user_info=0x7f050013;
+        public static final int lll123=0x7f050052;
         public static final int login=0x7f050017;
         public static final int loginNow=0x7f05004b;
         public static final int login_picture=0x7f050011;
@@ -399,7 +400,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int setting=0x7f050053;
         public static final int sex=0x7f05004e;
         public static final int sign=0x7f050050;
-        public static final int slidingmenumain=0x7f050054;
+        public static final int slidingmenumain=0x7f050055;
         public static final int t=0x7f050037;
         public static final int textView1=0x7f050026;
         public static final int textView2=0x7f05002e;

@@ -77,21 +77,6 @@ public class RegisterActivity extends Activity implements OnClickListener {
 		photo.setOnClickListener(this);
 	}
 
-	private boolean checkCommit() {
-		boolean log = true;
-		String Name = name.getText().toString().trim();
-		String Pwd = password.getText().toString().trim();
-		String Age = age.getText().toString().trim();
-		String Sign = sign.getText().toString().trim();
-		String Info = info.getText().toString().trim();
-		if (Name.equals("") || Pwd.equals("") || Age.equals("")
-				|| Sign.equals("") || Info.equals("")) {
-			log = false;
-		}
-
-		return log;
-	}
-
 	@Override
 	public void onClick(View arg0) {
 		switch (arg0.getId()) {

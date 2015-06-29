@@ -105,6 +105,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		sign = (TextView) findViewById(R.id.sign);
 		photo = (ImageView) findViewById(R.id.user_photo);
 		sex = (ImageView) findViewById(R.id.sex);
+		findViewById(R.id.change).setOnClickListener(this);
+		((LinearLayout) findViewById(R.id.setting)).setOnClickListener(this);
 		User user = db.getUser(Name);
 		if (user != null) {
 			sign.setText(user.getSign());
@@ -125,6 +127,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		findViewById(R.id.bNew).setOnClickListener(this);
 		findViewById(R.id.bPersonal).setOnClickListener(this);
+		
 		((RelativeLayout) findViewById(R.id.left_menu1))
 				.setOnClickListener(this);
 		((RelativeLayout) findViewById(R.id.left_menu2))
@@ -136,7 +139,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		((RelativeLayout) findViewById(R.id.left_menu5))
 				.setOnClickListener(this);
 		((LinearLayout) findViewById(R.id.loginNow)).setOnClickListener(this);
-		((LinearLayout) findViewById(R.id.setting)).setOnClickListener(this);
+		
+		
 		
 		((TextView) findViewById(R.id.tvTag1)).setOnClickListener(this);
 		((TextView) findViewById(R.id.tvTag2)).setOnClickListener(this);

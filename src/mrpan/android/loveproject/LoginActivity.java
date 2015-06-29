@@ -55,7 +55,7 @@ public class LoginActivity extends Activity {
 //		pwd2 = preferences.getString("ganbupassword", null);
 //		user.setText(name);
 		user.addTextChangedListener(new TextWatcher(){
-
+		
 			@Override
 			public void afterTextChanged(Editable arg0) {
 				// TODO Auto-generated method stub
@@ -73,6 +73,10 @@ public class LoginActivity extends Activity {
 						{
 							login_picture.setImageResource(R.drawable.biz_pc_main_info_profile_avatar_bg_dark);
 						}
+					}
+					else
+					{
+						login_picture.setImageResource(R.drawable.biz_pc_main_info_profile_avatar_bg_dark);
 					}
 				}
 			}
