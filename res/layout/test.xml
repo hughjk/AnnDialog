@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
-            android:text="Order" />
+            android:text="No.1" />
 
         <View
             android:layout_width="match_parent"
@@ -41,7 +41,8 @@
             android:layout_height="170dp" 
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp" 
+            android:background="@drawable/back"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -106,13 +107,25 @@
 
             </LinearLayout>
 
+           <RelativeLayout
+               android:id="@+id/chart_to_container"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_alignParentRight="true"
+               android:background="@color/transparent" >
+ 
             <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background=""
-                android:text="TextView" />
+                android:id="@+id/chatto_content"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:background="@drawable/content_bg"
+                android:gravity="center_vertical"
+                android:text="英雄会成为英雄，总是因为想被人记住。"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/text_size_12" />
+
+        </RelativeLayout>
 
         </LinearLayout>
 
