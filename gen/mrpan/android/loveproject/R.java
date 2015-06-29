@@ -283,7 +283,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int viewBehind=0x7f010015;
     }
     public static final class color {
+        public static final int date=0x7f080004;
         public static final int devide_line=0x7f080002;
+        public static final int grey=0x7f080003;
         public static final int menu_left_background_select=0x7f080001;
         public static final int menu_left_background_selected=0x7f080000;
     }
@@ -327,24 +329,25 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int btn_personal=0x7f020010;
         public static final int btn_personal1=0x7f020011;
         public static final int btn_personal2=0x7f020012;
-        public static final int clr_normal=0x7f020023;
-        public static final int clr_pressed=0x7f020024;
-        public static final int cursor=0x7f020013;
-        public static final int default_ptr_flip=0x7f020014;
-        public static final int default_ptr_rotate=0x7f020015;
-        public static final int divider=0x7f020016;
-        public static final int ic_launcher=0x7f020017;
-        public static final int indicator_arrow=0x7f020018;
-        public static final int indicator_bg_bottom=0x7f020019;
-        public static final int indicator_bg_top=0x7f02001a;
-        public static final int login_btn=0x7f02001b;
-        public static final int login_et_bg=0x7f02001c;
-        public static final int menu_select=0x7f02001d;
-        public static final int settings=0x7f02001e;
-        public static final int sex_fmale=0x7f02001f;
-        public static final int sex_male=0x7f020020;
-        public static final int vip2=0x7f020021;
-        public static final int zhuce_btn=0x7f020022;
+        public static final int clr_normal=0x7f020024;
+        public static final int clr_pressed=0x7f020025;
+        public static final int content_bg=0x7f020013;
+        public static final int cursor=0x7f020014;
+        public static final int default_ptr_flip=0x7f020015;
+        public static final int default_ptr_rotate=0x7f020016;
+        public static final int divider=0x7f020017;
+        public static final int ic_launcher=0x7f020018;
+        public static final int indicator_arrow=0x7f020019;
+        public static final int indicator_bg_bottom=0x7f02001a;
+        public static final int indicator_bg_top=0x7f02001b;
+        public static final int login_btn=0x7f02001c;
+        public static final int login_et_bg=0x7f02001d;
+        public static final int menu_select=0x7f02001e;
+        public static final int settings=0x7f02001f;
+        public static final int sex_fmale=0x7f020020;
+        public static final int sex_male=0x7f020021;
+        public static final int vip2=0x7f020022;
+        public static final int zhuce_btn=0x7f020023;
     }
     public static final class id {
         public static final int action_settings=0x7f050056;
@@ -450,6 +453,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int slidingmenu_right=0x7f03000b;
         public static final int slidingmenu_right_havelogin=0x7f03000c;
         public static final int slidingmenumain=0x7f03000d;
+        public static final int test=0x7f03000e;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
@@ -461,6 +465,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int change_user=0x7f070021;
         public static final int chose_photo=0x7f070018;
         public static final int cusor=0x7f070012;
+        public static final int dialog_author=0x7f070023;
+        public static final int dialog_title=0x7f070022;
         public static final int forget_pwd=0x7f070015;
         public static final int hello_world=0x7f070007;
         public static final int info=0x7f07001e;

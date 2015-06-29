@@ -29,6 +29,8 @@
     <string name="level">等级:</string>
     <string name="settings">设置</string>
     <string name="change_user">切换用户</string>
+    <string name="dialog_title">窥望北韩的女孩</string>
+    <string name="dialog_author">摄影/MrPan</string>
     
 		
 </resources>

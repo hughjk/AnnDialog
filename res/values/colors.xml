@@ -5,4 +5,7 @@
  	<drawable name="clr_normal">#00000000</drawable>
  	<drawable name="clr_pressed">#22c85555</drawable>
  	<color name="devide_line">#CBCED2</color>
+ 	
+ 	<color name="grey">#666666</color>
+ 	<color name="date">#00FFFF</color>
 </resources>

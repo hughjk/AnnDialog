@@ -29,6 +29,8 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -163,6 +165,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		// View v3 = myPagerAdapter.getItemAtPosition(2);
 		ptrlvHeadLineNews = (PullToRefreshListView) v1
 				.findViewById(R.id.ptrlvHeadLineNews);
+		ptrlvHeadLineNews.setOnItemClickListener(new MyOnItemClick());
 		// ptrlvEntertainmentNews = (PullToRefreshListView) v2
 		// .findViewById(R.id.ptrlvEntertainmentNews);
 		// ptrlvFinanceNews = (PullToRefreshListView) v3
@@ -492,6 +495,26 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	}
 
+	class MyOnItemClick implements OnItemClickListener{
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View arg1, int position,
+				long arg3) {
+			System.out.println("Äãµã»÷ÁË" + (position + 1));
+			ListView listView = (ListView) parent;
+			@SuppressWarnings("unchecked")
+			HashMap<String, String> map = (HashMap<String, String>) listView
+					.getItemAtPosition(position);
+//			Intent it = new Intent(this, GanbuInfos.class);
+//			Bundle bd = new Bundle();
+//			bd.putString("PersonID", userid);
+//			it.putExtras(bd);
+//			getActivity().startActivity(it);
+			
+		}
+		
+	}
+	
 	class MyHandler extends Handler {
 
 		@Override
