@@ -1,16 +1,53 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF" >
+	<RelativeLayout
+	    android:id="@+id/menu_s"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:background="@drawable/bg_topbar" >
+
+        	<Button
+            	android:id="@+id/last_btn"
+           	 	android:layout_width="wrap_content"
+           	 	android:layout_height="wrap_content"
+            	android:layout_alignParentLeft="true"
+            	android:layout_centerVertical="true"
+            	android:background="@drawable/btn_new" />
+
+        	<Button
+            	android:id="@+id/next_btn"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:layout_alignParentRight="true"
+           	 	android:layout_centerVertical="true"
+            	android:background="@drawable/btn_personal" />
+
+       		<TextView
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:layout_centerInParent="true"
+            	android:text="@string/app_name"
+            	android:textColor="#ffffffff"
+            	android:textSize="18sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/menu_s">
+"
 
     <LinearLayout
         android:id="@+id/linearLayout1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
+        android:layout_below="@+id/menu_s"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
         android:orientation="vertical" >
 
         <View
@@ -18,6 +55,7 @@
             android:layout_height="1dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
             android:background="@color/devide_line" />
 
         <TextView
@@ -76,10 +114,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="150dp"
-             android:layout_marginLeft="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp" 
-            android:orientation="horizontal">
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -104,31 +142,28 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="Nov,2015" />
-
             </LinearLayout>
 
-           <RelativeLayout
-               android:id="@+id/chart_to_container"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_alignParentRight="true"
-               android:background="@color/transparent" >
- 
-            <TextView
-                android:id="@+id/chatto_content"
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="3dp"
-                android:background="@drawable/content_bg"
-                android:gravity="center_vertical"
-                android:text="英雄会成为英雄，总是因为想被人记住。"
-                android:textColor="@color/grey"
-                android:textSize="@dimen/text_size_12" />
+            <RelativeLayout
+                android:id="@+id/chart_to_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@color/transparent" >
 
-        </RelativeLayout>
-
+                <TextView
+                    android:id="@+id/chatto_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:background="@drawable/content_bg"
+                    android:gravity="center_vertical"
+                    android:text="英雄会成为英雄，总是因为想被人记住。"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/text_size_12" />
+            </RelativeLayout>
         </LinearLayout>
 
     </LinearLayout>
-
+</ScrollView>
 </RelativeLayout>
