@@ -54,7 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		System.out.println("create a sqlite database");
 		db.execSQL("CREATE TABLE IF NOT EXISTS User(user_id integer primary key autoincrement, user_name varchar(50),user_password varchar(200),user_sex INTEGER, user_age INTEGER,user_sign varchar(300),user_info varchar(500),user_photo blob,user_level integer,time_last date)");   
-
+		db.execSQL("CREATE TABLE IF NOT EXISTS Dialog(dia_id integer primary key autoincrement,dia_title varchar(50),dia_author varchar(50),dia_content text,dia_img blob,dia_islock integer,dia_date varchar(50),dia_user varchar(50))");
 	}
 
 	@Override

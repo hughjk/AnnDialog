@@ -1,5 +1,8 @@
 package mrpan.android.loveproject.DB;
 
+import java.util.ArrayList;
+
+import mrpan.android.loveproject.bean.Dialog;
 import mrpan.android.loveproject.bean.User;
 import android.content.ContentValues;
 import android.content.Context;
@@ -106,6 +109,74 @@ public class DataBaseAdapter {
 	{
 		Cursor cs=mDb.query("User", null, "user_name='"+Name+"'", null, null, null, null);
 		return cs;
+	}
+	
+	public long InsertDialog(Dialog dialog){
+		ContentValues values = new ContentValues();
+
+		values.put("dia_title", dialog.getTitle());
+		values.put("dia_author", dialog.getAuthor());
+		values.put("dia_islock", dialog.isIsLock() == true ? 1 : 0);
+		values.put("dia_content", dialog.getContent());
+		values.put("dia_img", dialog.getImage());
+		values.put("dia_date", dialog.getDate());
+		values.put("dia_user", dialog.getUser());
+
+		return mDb.insert("Dialog", null, values);
+	}
+	
+	public long UpdateDialog(Dialog dialog,String ID){
+		ContentValues values = new ContentValues();
+
+		values.put("dia_title", dialog.getTitle());
+		values.put("dia_author", dialog.getAuthor());
+		values.put("dia_islock", dialog.isIsLock() == true ? 1 : 0);
+		values.put("dia_content", dialog.getContent());
+		values.put("dia_img", dialog.getImage());
+		values.put("dia_date", dialog.getDate());
+		values.put("dia_user", dialog.getUser());
+
+		return mDb.update("Dialog", values, "dia_id='" + ID + "'", null);
+	}
+	
+	public long deleteDialog(String ID) {
+		return mDb.delete("Dialog", "dia_id='" + ID + "'", null);
+	}
+	
+	private Cursor DialogCursorByUser(String User,int Index){
+		return mDb.query("Dialog", null, "dia_user='"+User+"'", null, null, null, "dia_id limit 10 offset 10*"+(Index-1));
+	}
+	
+	private Cursor DialogCursorAll(int Index){
+		return mDb.query("Dialog", null, null, null, null, null, "dia_id limit 10 offset 10*"+(Index-1));
+	}
+	
+	public ArrayList<Dialog> getDialog(String User,int Index){
+		ArrayList<Dialog> dialogs=new ArrayList<Dialog>();
+		Cursor cs;
+		if(User.trim().equals(""))
+		{
+			cs=DialogCursorAll(Index);
+		}
+		else{
+			cs=DialogCursorByUser(User,Index);
+		}
+		if(cs!=null){
+			while(cs.moveToNext()){
+				Dialog d=new Dialog();
+				d.setID(cs.getInt(cs.getColumnIndex("dia_id")));
+				d.setTitle(cs.getString(cs.getColumnIndex("dia_title")));
+				d.setAuthor(cs.getString(cs.getColumnIndex("dia_author")));
+				d.setContent(cs.getString(cs.getColumnIndex("dia_content")));
+				d.setImage(cs.getBlob(cs.getColumnIndex("dia_img")));
+				d.setIsLock(cs.getInt(cs.getColumnIndex("dia_islock"))==1?true:false);
+				d.setDate(cs.getString(cs.getColumnIndex("dia_date")));
+				d.setUser(cs.getString(cs.getColumnIndex("dia_user")));
+				dialogs.add(d);
+			}
+		}
+		
+		return dialogs;
 	}
 
 }
