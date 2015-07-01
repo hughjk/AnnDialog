@@ -259,11 +259,11 @@ public class MainActivity extends Activity implements OnClickListener {
 	 * 
 	 * @return
 	 */
-	public ArrayList<HashMap<String, String>> getSimulationNews(int n) {
-		ArrayList<HashMap<String, String>> ret = new ArrayList<HashMap<String, String>>();
-		HashMap<String, String> hm;
+	public ArrayList<HashMap<String, Object>> getSimulationNews(int n) {
+		ArrayList<HashMap<String, Object>> ret = new ArrayList<HashMap<String, Object>>();
+		HashMap<String, Object> hm;
 		for (int i = 0; i < n; i++) {
-			hm = new HashMap<String, String>();
+			hm = new HashMap<String, Object>();
 			if (i % 2 == 0) {
 				hm.put("uri",
 						"http://images.china.cn/attachement/jpg/site1000/20131029/001fd04cfc4813d9af0118.jpg");
@@ -274,6 +274,8 @@ public class MainActivity extends Activity implements OnClickListener {
 			hm.put("title", "国内成品油价两连跌几成定局");
 			hm.put("content", "国内成品油今日迎调价窗口，机构预计每升降价0.1元。");
 			hm.put("review", i + "跟帖");
+			//Bitmap b=null;
+			//hm.put("img", b);
 			ret.add(hm);
 		}
 		return ret;

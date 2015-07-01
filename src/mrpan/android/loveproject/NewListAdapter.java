@@ -4,12 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 
 import mrpan.android.loveproject.R;
+
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,9 +39,9 @@ public class NewListAdapter extends BaseAdapter {
 	}
 	
 	private Context context;
-	private List<HashMap<String, String>> news;
+	private List<HashMap<String, Object>> news;
 
-	public NewListAdapter(Context context,List<HashMap<String, String>> news) {
+	public NewListAdapter(Context context,List<HashMap<String, Object>> news) {
 		this.context = context;
 		this.news = news;
 		imageLoader = ImageLoader.getInstance();
@@ -58,7 +60,7 @@ public class NewListAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public HashMap<String,String> getItem(int position) {
+	public HashMap<String,Object> getItem(int position) {
 		return news.get(position);
 	}
 
@@ -85,17 +87,18 @@ public class NewListAdapter extends BaseAdapter {
 		}
 		
 		//设置显示数据
-		imageLoader.displayImage(getItem(position).get("uri"), holder.ivPreview, options);
-		holder.tvTitle.setText(getItem(position).get("title"));
-		holder.tvContent.setText(getItem(position).get("content"));
-		holder.tvReview.setText(getItem(position).get("review"));
+		imageLoader.displayImage(getItem(position).get("uri").toString(), holder.ivPreview, options);
+		//holder.ivPreview.setImageBitmap((Bitmap)getItem(position).get("img"));
+		holder.tvTitle.setText(getItem(position).get("title").toString());
+		holder.tvContent.setText(getItem(position).get("content").toString());
+		holder.tvReview.setText(getItem(position).get("review").toString());
 		
 		return convertView;
 	}
 	
 	//添加项
-	public void addNews(List<HashMap<String, String>> addNews) {
-		for(HashMap<String, String> hm:addNews) {
+	public void addNews(List<HashMap<String, Object>> addNews) {
+		for(HashMap<String, Object> hm:addNews) {
 			news.add(hm);
 		}
 	}
