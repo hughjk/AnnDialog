@@ -115,13 +115,7 @@ public class SendDialogActivity extends Activity {
 				}
 			}
 		});
-		mLocation.setOnClickListener(new OnClickListener() {
 
-			public void onClick(View v) {
-				// 地理位置对话框
-				
-			}
-		});
 		mFaceButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -129,12 +123,6 @@ public class SendDialogActivity extends Activity {
 			}
 		});
 		
-		mLocationButton.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View v) {
-				
-			}
-		});
 	}
 	
 	private boolean publishDialog(){

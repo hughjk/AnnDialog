@@ -226,6 +226,21 @@ public class MainActivity extends Activity implements OnClickListener {
 			vpViewPager.setCurrentItem(2);
 		case R.id.left_menu1:
 			Log.d("Main", "Menu1_Clicked");
+			if(!myapp.isLog())
+			{
+				Toast.makeText(this, "ÇëÏÈµÇÂ¼~", Toast.LENGTH_LONG).show();
+				intent=new Intent(this,LoginActivity.class);
+				this.startActivity(intent);
+				finish();
+			}
+			else
+			{
+				intent=new Intent(this,SendDialogActivity.class);
+				this.startActivity(intent);
+				finish();
+			}
+			
+			
 			break;
 		case R.id.left_menu2:
 			Log.d("Main", "Menu2_Clicked");
