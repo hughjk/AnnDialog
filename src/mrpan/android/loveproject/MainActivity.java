@@ -149,8 +149,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		((TextView) findViewById(R.id.tvTag3)).setOnClickListener(this);
 		views = new ArrayList<View>();
 		views.add(LayoutInflater.from(this).inflate(R.layout.layout1, null));
-		views.add(LayoutInflater.from(this).inflate(R.layout.layout3, null));
-		views.add(LayoutInflater.from(this).inflate(R.layout.layout2, null));
+	//	views.add(LayoutInflater.from(this).inflate(R.layout.layout3, null));
+	//	views.add(LayoutInflater.from(this).inflate(R.layout.layout2, null));
 
 		vpViewPager = (ViewPager) findViewById(R.id.vpViewPager1);
 		vpViewPager.setAdapter(new MyPagerAdapter(views));

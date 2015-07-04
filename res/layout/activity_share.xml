@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+ <!-- 默认效果，带图片文字的登陆按钮 -->
+        <com.sina.weibo.sdk.widget.LoginButton
+            android:id="@+id/login_button_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        
+        <com.sina.weibo.sdk.widget.LoginButton
+            android:id="@+id/login_button_style1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp" />
+        <TextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
+</LinearLayout>
