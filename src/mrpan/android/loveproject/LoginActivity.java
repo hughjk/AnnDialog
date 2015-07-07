@@ -50,15 +50,10 @@ public class LoginActivity extends Activity {
 		password = (EditText) findViewById(R.id.user_password);
 		tvForgetpwd = (TextView) findViewById(R.id.forgetpwd);
 		user = (EditText) findViewById(R.id.user_name);
-//		preferences = getSharedPreferences("ganbuname", MODE_WORLD_READABLE);
-//		String name = preferences.getString("ganbuname", null);
-//		pwd2 = preferences.getString("ganbupassword", null);
-//		user.setText(name);
 		user.addTextChangedListener(new TextWatcher(){
 		
 			@Override
 			public void afterTextChanged(Editable arg0) {
-				// TODO Auto-generated method stub
 				if (arg0.length() != 0) {
 					String name=user.getText().toString().trim();
 					// mHandler.sendEmptyMessage(CHANGE_INPUT);
@@ -125,6 +120,7 @@ public class LoginActivity extends Activity {
 						intent.setClass(mContext, MainActivity.class);
 						startActivity(intent);
 						finish();
+						System.exit(0);
 					}
 			//	System.out.println("22222222");
 					

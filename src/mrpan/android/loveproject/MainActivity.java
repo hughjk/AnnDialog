@@ -5,9 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import mrpan.android.loveproject.DB.DataBaseAdapter;
+import mrpan.android.loveproject.DB.DatabaseHelper;
+import mrpan.android.loveproject.bean.Dialog;
 import mrpan.android.loveproject.bean.User;
 import mrpan.android.loveproject.view.AdViewPager;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -61,6 +65,8 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	private TextView sign, info;
 
+	private boolean log_database;
+
 	private AdViewPager vpAdv = null;
 	private ViewGroup vg = null;
 	private ImageView[] imageViews = null;
@@ -82,6 +88,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		CheckData();
 		db = new DataBaseAdapter(this);
 		myapp = (MyApplication) getApplication();
 		log_State = myapp.isLog();
@@ -102,6 +109,37 @@ public class MainActivity extends Activity implements OnClickListener {
 		findViewById();
 	}
 
+	boolean CheckData() {
+		try {
+			DatabaseHelper.checkFile(DatabaseHelper.DB_PATH);
+			DatabaseHelper.getDataBase(this);
+			log_database = true;
+		} catch (Exception ex) {
+			log_database = false;
+			new AlertDialog.Builder(MainActivity.this)
+					.setTitle("系统提示")
+					// 设置对话框标题
+
+					.setMessage("数据库不存在！")
+					// 设置显示的内容
+
+					.setPositiveButton("确定",
+							new DialogInterface.OnClickListener() {// 添加确定按钮
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {// 确定按钮的响应事件
+									finish();
+									System.exit(0);
+								}
+
+							}).show();
+
+		}
+		return log_database;
+
+	}
+
 	void UserInfo(String Name) {
 		info = (TextView) findViewById(R.id.info);
 		sign = (TextView) findViewById(R.id.sign);
@@ -112,7 +150,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		User user = db.getUser(Name);
 		if (user != null) {
 			sign.setText(user.getSign());
-			byte[] p=user.getPhoto();
+			byte[] p = user.getPhoto();
 			if (null != p && p.length > 0) {
 				Bitmap photo = ImageTools.byteToBitmap(p);
 				(this.photo).setImageBitmap(photo);
@@ -129,7 +167,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		findViewById(R.id.bNew).setOnClickListener(this);
 		findViewById(R.id.bPersonal).setOnClickListener(this);
-		
+
 		((RelativeLayout) findViewById(R.id.left_menu1))
 				.setOnClickListener(this);
 		((RelativeLayout) findViewById(R.id.left_menu2))
@@ -141,22 +179,20 @@ public class MainActivity extends Activity implements OnClickListener {
 		((RelativeLayout) findViewById(R.id.left_menu5))
 				.setOnClickListener(this);
 		((LinearLayout) findViewById(R.id.loginNow)).setOnClickListener(this);
-		
-		
-		
-		((TextView) findViewById(R.id.tvTag1)).setOnClickListener(this);
-		((TextView) findViewById(R.id.tvTag2)).setOnClickListener(this);
-		((TextView) findViewById(R.id.tvTag3)).setOnClickListener(this);
+
+		//((TextView) findViewById(R.id.tvTag1)).setOnClickListener(this);
+		//((TextView) findViewById(R.id.tvTag2)).setOnClickListener(this);
+		//((TextView) findViewById(R.id.tvTag3)).setOnClickListener(this);
 		views = new ArrayList<View>();
 		views.add(LayoutInflater.from(this).inflate(R.layout.layout1, null));
-	//	views.add(LayoutInflater.from(this).inflate(R.layout.layout3, null));
-	//	views.add(LayoutInflater.from(this).inflate(R.layout.layout2, null));
+		// views.add(LayoutInflater.from(this).inflate(R.layout.layout3, null));
+		// views.add(LayoutInflater.from(this).inflate(R.layout.layout2, null));
 
 		vpViewPager = (ViewPager) findViewById(R.id.vpViewPager1);
 		vpViewPager.setAdapter(new MyPagerAdapter(views));
 		vpViewPager.setOnPageChangeListener(new MyOnPageChangeListener());
 
-		initCursor(views.size());
+		//initCursor(views.size());
 
 		MyPagerAdapter myPagerAdapter = (MyPagerAdapter) vpViewPager
 				.getAdapter();
@@ -170,7 +206,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		// .findViewById(R.id.ptrlvEntertainmentNews);
 		// ptrlvFinanceNews = (PullToRefreshListView) v3
 		// .findViewById(R.id.ptrlvFinanceNews);
-		newAdapter = new NewListAdapter(this, getSimulationNews(10));
+		newAdapter = new NewListAdapter(this, getSimulationNews(1));
 		initPullToRefreshListView(ptrlvHeadLineNews, newAdapter);
 		// initPullToRefreshListView(ptrlvEntertainmentNews, newAdapter);
 		// initPullToRefreshListView(ptrlvFinanceNews, newAdapter);
@@ -216,31 +252,27 @@ public class MainActivity extends Activity implements OnClickListener {
 			this.startActivity(intent);
 			finish();
 			break;
-		case R.id.tvTag1:
-			vpViewPager.setCurrentItem(0);
-			break;
-		case R.id.tvTag2:
-			vpViewPager.setCurrentItem(1);
-			break;
-		case R.id.tvTag3:
-			vpViewPager.setCurrentItem(2);
+//		case R.id.tvTag1:
+//			vpViewPager.setCurrentItem(0);
+//			break;
+//		case R.id.tvTag2:
+//			vpViewPager.setCurrentItem(1);
+//			break;
+//		case R.id.tvTag3:
+//			vpViewPager.setCurrentItem(2);
 		case R.id.left_menu1:
 			Log.d("Main", "Menu1_Clicked");
-			if(!myapp.isLog())
-			{
+			if (!myapp.isLog()) {
 				Toast.makeText(this, "请先登录~", Toast.LENGTH_LONG).show();
-				intent=new Intent(this,LoginActivity.class);
+				intent = new Intent(this, LoginActivity.class);
+				this.startActivity(intent);
+				finish();
+			} else {
+				intent = new Intent(this, SendDialogActivity.class);
 				this.startActivity(intent);
 				finish();
 			}
-			else
-			{
-				intent=new Intent(this,SendDialogActivity.class);
-				this.startActivity(intent);
-				finish();
-			}
-			
-			
+
 			break;
 		case R.id.left_menu2:
 			Log.d("Main", "Menu2_Clicked");
@@ -260,7 +292,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		case R.id.setting:
 			break;
 		case R.id.change:
-			intent=new Intent();
+			intent = new Intent();
 			intent.setClass(this, LoginActivity.class);
 			startActivity(intent);
 			finish();
@@ -269,30 +301,41 @@ public class MainActivity extends Activity implements OnClickListener {
 	}
 
 	/**
-	 * 获取N条模拟的新闻数据
-	 * 打包成ArrayList返回
+	 * 获取N条模拟的新闻数据 打包成ArrayList返回
 	 * 
 	 * @return
 	 */
 	public ArrayList<HashMap<String, Object>> getSimulationNews(int n) {
 		ArrayList<HashMap<String, Object>> ret = new ArrayList<HashMap<String, Object>>();
+		ArrayList<Dialog> d=db.getDialog("",n);
 		HashMap<String, Object> hm;
-		for (int i = 0; i < n; i++) {
-			hm = new HashMap<String, Object>();
-			if (i % 2 == 0) {
-				hm.put("uri",
-						"http://images.china.cn/attachement/jpg/site1000/20131029/001fd04cfc4813d9af0118.jpg");
-			} else {
-				hm.put("uri",
-						"http://photocdn.sohu.com/20131101/Img389373139.jpg");
-			}
-			hm.put("title", "国内成品油价两连跌几成定局");
-			hm.put("content", "国内成品油今日迎调价窗口，机构预计每升降价0.1元。");
-			hm.put("review", i + "跟帖");
-			//Bitmap b=null;
-			//hm.put("img", b);
+		for(Dialog dd : d)
+		{
+			hm=new HashMap<String, Object>();
+			hm.put("uri","http://images.china.cn/attachement/jpg/site1000/20131029/001fd04cfc4813d9af0118.jpg");
+			Bitmap bit=ImageTools.byteToBitmap(dd.getImage());
+			hm.put("img",bit );
+			hm.put("title",dd.getTitle());
+			hm.put("content", dd.getContent());
+			hm.put("review",dd.getID());
 			ret.add(hm);
 		}
+//		for (int i = 0; i < n; i++) {
+//			hm = new HashMap<String, Object>();
+//			if (i % 2 == 0) {
+//				hm.put("uri",
+//						"http://images.china.cn/attachement/jpg/site1000/20131029/001fd04cfc4813d9af0118.jpg");
+//			} else {
+//				hm.put("uri",
+//						"http://photocdn.sohu.com/20131101/Img389373139.jpg");
+//			}
+//			hm.put("title", "国内成品油价两连跌几成定局");
+//			hm.put("content", "国内成品油今日迎调价窗口，机构预计每升降价0.1元。");
+//			hm.put("review", i + "跟帖");
+//			// Bitmap b=null;
+//			// hm.put("img", b);
+//			ret.add(hm);
+//		}
 		return ret;
 	}
 
@@ -512,26 +555,31 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	}
 
-	class MyOnItemClick implements OnItemClickListener{
+	class MyOnItemClick implements OnItemClickListener {
 
 		@Override
 		public void onItemClick(AdapterView<?> parent, View arg1, int position,
 				long arg3) {
-			System.out.println("你点击了" + (position + 1));
+			//System.out.println("你点击了" + (position + 1));
 			ListView listView = (ListView) parent;
 			@SuppressWarnings("unchecked")
 			HashMap<String, String> map = (HashMap<String, String>) listView
 					.getItemAtPosition(position);
-//			Intent it = new Intent(this, GanbuInfos.class);
-//			Bundle bd = new Bundle();
-//			bd.putString("PersonID", userid);
-//			it.putExtras(bd);
-//			getActivity().startActivity(it);
-			
+			String ID=map.get("review");
+			Dialog d=db.getDialogByID(ID);
+			Intent it=new Intent(getBaseContext(),DialogActivity.class);
+			Bundle bundle=new Bundle();
+			bundle.putString("id", ID);
+			// Intent it = new Intent(this, GanbuInfos.class);
+			// Bundle bd = new Bundle();
+			// bd.putString("PersonID", userid);
+			 it.putExtras(bundle);
+			 startActivity(it);
+
 		}
-		
+
 	}
-	
+
 	class MyHandler extends Handler {
 
 		@Override

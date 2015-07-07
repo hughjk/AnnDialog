@@ -87,8 +87,8 @@ public class NewListAdapter extends BaseAdapter {
 		}
 		
 		//设置显示数据
-		imageLoader.displayImage(getItem(position).get("uri").toString(), holder.ivPreview, options);
-		//holder.ivPreview.setImageBitmap((Bitmap)getItem(position).get("img"));
+		//imageLoader.displayImage(getItem(position).get("uri").toString(), holder.ivPreview, options);
+		holder.ivPreview.setImageBitmap((Bitmap)getItem(position).get("img"));
 		holder.tvTitle.setText(getItem(position).get("title").toString());
 		holder.tvContent.setText(getItem(position).get("content").toString());
 		holder.tvReview.setText(getItem(position).get("review").toString());

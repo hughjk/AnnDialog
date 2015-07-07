@@ -9,7 +9,7 @@
         	android:background="@drawable/bg_topbar" >
 
         	<Button
-            	android:id="@+id/last_btn"
+            	android:id="@+id/back_btn"
            	 	android:layout_width="wrap_content"
            	 	android:layout_height="wrap_content"
             	android:layout_alignParentLeft="true"
@@ -17,7 +17,7 @@
             	android:background="@drawable/btn_new" />
 
         	<Button
-            	android:id="@+id/next_btn"
+            	android:id="@+id/share_btn"
             	android:layout_width="wrap_content"
             	android:layout_height="wrap_content"
             	android:layout_alignParentRight="true"
@@ -74,9 +74,10 @@
             android:layout_marginTop="5dp"
             android:background="@color/devide_line" />
         
-        <ImageView android:id="@+id/imageView1" 
+        <ImageView android:id="@+id/dialog_img" 
             android:layout_width="match_parent" 
-            android:layout_height="170dp" 
+            android:layout_height="170dp"
+            android:scaleType="fitXY"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp" 
@@ -90,7 +91,7 @@
             android:layout_marginTop="10dp"  >
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/dialog_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -99,12 +100,12 @@
                 android:textColor="@color/grey" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/dialog_author"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_alignParentRight="true"
-                android:layout_below="@+id/textView2"
+                android:layout_below="@+id/dialog_title"
                 android:text="@string/dialog_author"
                 android:textSize="16dp"
                 android:textColor="@color/grey" />
@@ -125,7 +126,7 @@
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/dialog_date_day"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -137,7 +138,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/dialog_date_year_month"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"

@@ -69,7 +69,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		return mDb;
 	}
 	
-	void checkFile(String path)
+	public static void checkFile(String path)
 	{
 		File dir = new File(path);
 		if (!dir.exists()) {

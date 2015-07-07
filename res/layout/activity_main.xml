@@ -35,7 +35,8 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#ffeeeeee" >
+        android:background="#ffeeeeee" 
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tvTag1"
@@ -73,7 +74,8 @@
         android:layout_height="wrap_content"
         android:scaleType="matrix"
         android:contentDescription="@string/cusor"
-        android:src="@drawable/cursor" />
+        android:src="@drawable/cursor" 
+        android:visibility="gone"/>
     <android.support.v4.view.ViewPager
         android:id="@+id/vpViewPager1"
         android:layout_width="fill_parent"

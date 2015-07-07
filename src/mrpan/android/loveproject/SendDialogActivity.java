@@ -4,6 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import mrpan.android.loveproject.DB.DataBaseAdapter;
 import mrpan.android.loveproject.DB.DatabaseHelper;
@@ -131,11 +133,15 @@ public class SendDialogActivity extends Activity {
 		String Content=mContent.getText().toString().trim();
 		Bitmap bitmap=ImageTools.getBitmap(photo);
 		byte[] Photo=ImageTools.bitmapToBytes(bitmap);
+		SimpleDateFormat formatter =new SimpleDateFormat("MM,yyyy-dd");
+		Date curDate=new Date(System.currentTimeMillis());//获取当前时间       
+		String date=formatter.format(curDate);
 		Dialog d=new Dialog();
 		d.setTitle(Title);
 		d.setAuthor(Author);
 		d.setContent(Content);
 		d.setImage(Photo);
+		d.setDate(date);
 		long result=db.InsertDialog(d);
 		if(result==-1)
 			return false;

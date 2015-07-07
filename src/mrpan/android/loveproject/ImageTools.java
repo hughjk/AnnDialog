@@ -10,6 +10,7 @@ import java.io.InputStream;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory.Options;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
@@ -100,6 +101,19 @@ public final class ImageTools {
 		} else {
 			return null;
 		}
+	}
+	public static Bitmap byteToBitmap2(byte[] bytes){
+		Bitmap image = null;
+		if (null != bytes && bytes.length > 0) {
+			BitmapFactory.Options options = new Options();
+			options.inDither = false; /* 不进行图片抖动处理 */
+			options.inJustDecodeBounds=false;
+			options.inPreferredConfig = null; /* 设置让解码器以最佳方式解码 */
+			//options.inSampleSize = 4;
+			image = BitmapFactory.decodeByteArray(bytes, 0, bytes.length,
+					options);
+		}
+		return image;
 	}
 
 	/**

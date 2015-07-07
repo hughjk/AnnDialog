@@ -1,7 +1,7 @@
 package mrpan.android.loveproject.bean;
 
 public class Dialog {
-	int ID;
+	String ID;
 	String Title;
 	String Author;
 	String Content;
@@ -11,7 +11,7 @@ public class Dialog {
 	String User;
 	
 	public Dialog(){
-		ID=0;
+		ID="";
 		Title="";
 		Author="";
 		Content="";
@@ -21,11 +21,11 @@ public class Dialog {
 		User="";
 	}
 
-	public int getID() {
+	public String getID() {
 		return ID;
 	}
 
-	public void setID(int iD) {
+	public void setID(String iD) {
 		ID = iD;
 	}
 
