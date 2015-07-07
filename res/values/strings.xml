@@ -13,6 +13,7 @@
     <string name="left_menu4">Menu4</string>
     <string name="left_menu5">Menu5</string>
     <string name="right_menu">立即登录</string>
+    <string name="other_login">合作伙伴登陆:</string>
     <string name="cusor"></string>
     <string name="user_name">输入用户名</string>
     <string name="user_pwd">输入密码</string>
