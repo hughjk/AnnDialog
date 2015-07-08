@@ -43,7 +43,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
 	private RelativeLayout rl_user;
 	private ImageView photo;
 	private TextView tvForgetpwd;
-	EditText password, name, sign, info, age;
+	EditText password, name, sign, info, nick;
 	private RadioGroup group_sex;
 	String pwd, pwd2;
 	String fileName;
@@ -71,7 +71,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
 		name = (EditText) findViewById(R.id.zhuce_name);
 		sign = (EditText) findViewById(R.id.zhuce_sign);
 		info = (EditText) findViewById(R.id.zhuce_info);
-		age = (EditText) findViewById(R.id.zhuce_age);
+		nick = (EditText) findViewById(R.id.zhuce_nick);
 		group_sex = (RadioGroup) findViewById(R.id.zhuce_sex);
 		((Button) findViewById(R.id.zhuce_zhuce)).setOnClickListener(this);
 		photo.setOnClickListener(this);
@@ -86,7 +86,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
 		case R.id.zhuce_zhuce:
 			String Name = name.getText().toString().trim();
 			String Pwd = password.getText().toString().trim();
-			String Age = age.getText().toString().trim();
+			String Nick = nick.getText().toString().trim();
 			String Sign = sign.getText().toString().trim();
 			String Info = info.getText().toString().trim();
 			RadioButton rb = (RadioButton) findViewById(group_sex
@@ -94,14 +94,14 @@ public class RegisterActivity extends Activity implements OnClickListener {
 			String sex = rb.getTag().toString();
 			Bitmap bitmap=ImageTools.getBitmap(photo);
 			byte[] Photo=ImageTools.bitmapToBytes(bitmap);
-			if (Name.equals("") || Pwd.equals("") || Age.equals("")
+			if (Name.equals("") || Pwd.equals("") || Nick.equals("")
 					|| Sign.equals("") || Info.equals("")) {
 				Toast.makeText(mContext, "输入项不能为空！", Toast.LENGTH_LONG).show();
 			} else {
 				User user = new User();
 				user.setName(Name);
 				user.setPassword(Pwd);
-				user.setAge(Integer.parseInt(Age));
+				user.setNick(Nick);
 				user.setSign(Sign);
 				user.setInfo(Info);
 				user.setSex(sex.equals("1") ? true : false);

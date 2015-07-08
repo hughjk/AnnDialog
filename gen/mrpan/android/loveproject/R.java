@@ -560,12 +560,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int zhuce_btn=0x7f020041;
     }
     public static final class id {
-        public static final int action_settings=0x7f050067;
+        public static final int action_settings=0x7f050068;
         public static final int bNew=0x7f05001c;
         public static final int bPersonal=0x7f05001d;
         public static final int back_btn=0x7f050024;
         public static final int both=0x7f050003;
-        public static final int change=0x7f050065;
+        public static final int change=0x7f050066;
         public static final int chart_to_container=0x7f05002c;
         public static final int chatto_content=0x7f05002d;
         public static final int dialog_author=0x7f050029;
@@ -584,7 +584,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int imageView3=0x7f050054;
         public static final int imageView4=0x7f050057;
         public static final int imageView5=0x7f05005b;
-        public static final int info=0x7f050062;
+        public static final int info=0x7f050063;
         public static final int ivCursor=0x7f050021;
         public static final int ivPreview=0x7f050035;
         public static final int left=0x7f05000c;
@@ -593,16 +593,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int left_menu3=0x7f050053;
         public static final int left_menu4=0x7f050056;
         public static final int left_menu5=0x7f05005a;
-        public static final int level=0x7f05005f;
+        public static final int level=0x7f050060;
         public static final int linearLayout1=0x7f050026;
         public static final int ll_user_info=0x7f050013;
-        public static final int lll123=0x7f050063;
+        public static final int lll123=0x7f050064;
         public static final int login=0x7f050016;
         public static final int loginNow=0x7f05005d;
         public static final int login_picture=0x7f050011;
         public static final int manualOnly=0x7f050004;
         public static final int margin=0x7f05000e;
         public static final int menu_s=0x7f050023;
+        public static final int nick=0x7f05005f;
         public static final int ptrlvHeadLineNews=0x7f050039;
         public static final int pullDownFromTop=0x7f050005;
         public static final int pullFromEnd=0x7f050002;
@@ -620,11 +621,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int scrollView1=0x7f05003f;
         public static final int scrollview=0x7f05000b;
         public static final int selected_view=0x7f050010;
-        public static final int setting=0x7f050064;
-        public static final int sex=0x7f050060;
+        public static final int setting=0x7f050065;
+        public static final int sex=0x7f050061;
         public static final int share_btn=0x7f050025;
-        public static final int sign=0x7f050061;
-        public static final int slidingmenumain=0x7f050066;
+        public static final int sign=0x7f050062;
+        public static final int slidingmenumain=0x7f050067;
         public static final int t=0x7f050049;
         public static final int textView1=0x7f050019;
         public static final int textView2=0x7f050032;
@@ -654,10 +655,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int writerecord_photo_button=0x7f050033;
         public static final int writerecord_submit=0x7f050030;
         public static final int zhuce=0x7f050017;
-        public static final int zhuce_age=0x7f050047;
         public static final int zhuce_info=0x7f05004a;
         public static final int zhuce_name=0x7f050041;
         public static final int zhuce_nan=0x7f050044;
+        public static final int zhuce_nick=0x7f050047;
         public static final int zhuce_nv=0x7f050046;
         public static final int zhuce_password=0x7f050042;
         public static final int zhuce_photo=0x7f050040;

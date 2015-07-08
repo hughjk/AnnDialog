@@ -8,6 +8,9 @@ import mrpan.android.loveproject.DB.DataBaseAdapter;
 import mrpan.android.loveproject.DB.DatabaseHelper;
 import mrpan.android.loveproject.bean.Dialog;
 import mrpan.android.loveproject.bean.User;
+import mrpan.android.loveproject.bean.Util;
+import mrpan.android.loveproject.sdk.BaseUiListener;
+import mrpan.android.loveproject.sdk.QQShareDemo;
 import mrpan.android.loveproject.view.AdViewPager;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -47,6 +50,8 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.tencent.connect.common.Constants;
+import com.tencent.tauth.Tencent;
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -63,7 +68,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private PullToRefreshListView ptrlvHeadLineNews = null;
 	private NewListAdapter newAdapter = null;
 
-	private TextView sign, info;
+	private TextView sign, info,nick;
 
 	private boolean log_database;
 
@@ -83,14 +88,18 @@ public class MainActivity extends Activity implements OnClickListener {
 	public boolean log_State;
 
 	private MyApplication myapp;
-
+	//DatabaseHelper d;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		CheckData();
 		db = new DataBaseAdapter(this);
-		myapp = (MyApplication) getApplication();
+		//d=new DatabaseHelper(this);
+		//d.getDataBase(this);
+		//d.getReadableDatabase();
+		myapp = (MyApplication) MainActivity.this.getApplication();
+		Log.v("2222222222222", ""+myapp.getName());
 		log_State = myapp.isLog();
 		// 设置抽屉菜单
 		slidingMenu = new SlidingMenu(this);
@@ -99,15 +108,18 @@ public class MainActivity extends Activity implements OnClickListener {
 		slidingMenu.setMenu(R.layout.slidingmenu_left);
 		if (myapp.isLog()) {
 			slidingMenu.setSecondaryMenu(R.layout.slidingmenu_right_havelogin);
-			// UserInfo(myapp.getName());
-		} else
+		}
+		else
+		{
 			slidingMenu.setSecondaryMenu(R.layout.slidingmenu_right);
+		}
 		slidingMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
 
 		// 将抽屉菜单与主页面关联起来
 		slidingMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
 		findViewById();
 	}
+
 
 	boolean CheckData() {
 		try {
@@ -145,10 +157,12 @@ public class MainActivity extends Activity implements OnClickListener {
 		sign = (TextView) findViewById(R.id.sign);
 		photo = (ImageView) findViewById(R.id.user_photo);
 		sex = (ImageView) findViewById(R.id.sex);
+		nick=(TextView) findViewById(R.id.nick);
 		findViewById(R.id.change).setOnClickListener(this);
 		((LinearLayout) findViewById(R.id.setting)).setOnClickListener(this);
 		User user = db.getUser(Name);
 		if (user != null) {
+			nick.setText(user.getNick());
 			sign.setText(user.getSign());
 			byte[] p = user.getPhoto();
 			if (null != p && p.length > 0) {
@@ -212,14 +226,34 @@ public class MainActivity extends Activity implements OnClickListener {
 		// initPullToRefreshListView(ptrlvFinanceNews, newAdapter);
 
 		if (myapp.isLog()) {
-			UserInfo(myapp.getName());
+			if(myapp.getName().equals("qq_User"))
+			{
+				QQShareDemo qq=new QQShareDemo(MainActivity.this,this);
+				qq.getInfo();
+				Log.v("2222222222222", ""+myapp.isLog());
+			}
+			else
+			{
+				UserInfo(myapp.getName());
+				Log.v("2222222222222", ""+myapp.isLog());
+			}
 		}
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
-		super.onActivityResult(requestCode, resultCode, data);
+//		if (requestCode == Constants.REQUEST_API) {
+//			if (resultCode == Constants.RESULT_LOGIN) {
+//				Tencent mTencent = Tencent.createInstance(QQShareDemo.APP_ID, this);
+//				mTencent.handleLoginData(data, new BaseUiListener(this));
+//			}
+//			if(resultCode==Constants.REQUEST_API)
+//			{
+//				
+//			}
+			Log.v("lllllllllllllll", "ResultCode"+resultCode);
+			super.onActivityResult(requestCode, resultCode, data);
+
 	}
 
 	/**

@@ -1,15 +1,23 @@
 package mrpan.android.loveproject.sdk;
 
+import mrpan.android.loveproject.LoginActivity;
+
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+
+import com.tencent.open.utils.Util;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.UiError;
 
 public class BaseUiListener implements IUiListener {
 	Context mContext;
 	String mScope;
-	public static JSONObject obj;
+	private static final int ON_COMPLETE = 0;
 
 	public BaseUiListener(Context mContext) {
 		super();
@@ -21,10 +29,28 @@ public class BaseUiListener implements IUiListener {
 		this.mContext = mContext;
 		this.mScope = mScope;
 	}
+	private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+            case ON_COMPLETE:
+                JSONObject response = (JSONObject)msg.obj;
+                LoginActivity.obj="";
+                LoginActivity.obj=response.toString();
+                mrpan.android.loveproject.bean.Util.obj="";
+                mrpan.android.loveproject.bean.Util.obj=response.toString();
+                break;
 
+            }
+        }	    
+	};
+	
 	protected void doComplete(JSONObject jsonObj) {
-		//Log.d("JSON", jsonObj.toString());
-		jsonObj=obj;
+		Message msg = mHandler.obtainMessage();
+	    msg.what = ON_COMPLETE;
+	    msg.obj = jsonObj;
+	    mHandler.sendMessage(msg);
+	    Log.d("Json", jsonObj.toString());
 		// try {
 		// // JSONObject jsonObj = new JSONObject(values.toString());
 		// OPENID = jsonObj.getString("openid");

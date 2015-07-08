@@ -17,8 +17,8 @@ import com.tencent.tauth.Tencent;
 
 public class QQShareDemo {
 	private Tencent mTencent;
-	private final static String APP_ID = "1104753484";
-	private final static String SCOPE = "all";
+	public final static String APP_ID = "1104753484";
+	public final static String SCOPE = "all";
 	private static String OPENID = "";
 	private static String PFKEY = "";
 	private static String ACCESS_TOKEN = "";
@@ -33,21 +33,10 @@ public class QQShareDemo {
 		mInfo = new UserInfo(mContext, mTencent.getQQToken());
 	}
 
-	public void login() {
-		if (!mTencent.isSessionValid()) {
-			mTencent.login(activity, SCOPE, new BaseUiListener(mContext));
-
-		}
-	}
-
+	
 	public void getInfo() {
 		mInfo.getUserInfo(new BaseUiListener(mContext, "get_vip_rich_info"));
 	}
-
-	public void logout() {
-		mTencent.logout(mContext);
-	}
-
 	public void ShareApp(Share share) {
 		final Bundle params = new Bundle();
 		params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE,

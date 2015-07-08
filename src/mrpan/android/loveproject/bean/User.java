@@ -9,7 +9,7 @@ public class User {
 	String Name;
 	String Password;
 	boolean Sex;
-	int Age;
+	String Nick;
 	String Sign;
 	String Info;
 	byte[] Photo;
@@ -20,7 +20,7 @@ public class User {
 		Name="";
 		Password="";
 		Sex=true;
-		Age=0;
+		Nick="";
 		Sign="";
 		Info="";
 		Photo=new byte[]{};
@@ -60,12 +60,13 @@ public class User {
 		Sex = sex;
 	}
 
-	public int getAge() {
-		return Age;
+
+	public String getNick() {
+		return Nick;
 	}
 
-	public void setAge(int age) {
-		Age = age;
+	public void setNick(String nick) {
+		Nick = nick;
 	}
 
 	public String getSign() {

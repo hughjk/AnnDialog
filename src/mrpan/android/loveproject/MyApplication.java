@@ -1,13 +1,24 @@
 package mrpan.android.loveproject;
 
+import org.json.JSONObject;
+
 import android.app.Application;
 
 public class MyApplication extends Application {  
     
     private boolean log;  
     private String Name;
+    private JSONObject obj;
     
-    public String getName() {
+    public JSONObject getObj() {
+		return obj;
+	}
+
+	public void setObj(JSONObject obj) {
+		this.obj = obj;
+	}
+
+	public String getName() {
 		return Name;
 	}
 
@@ -25,6 +36,8 @@ public class MyApplication extends Application {
 
 	@Override  
     public void onCreate() {    
-        super.onCreate();  
+        super.onCreate(); 
+        this.log=false;
+        this.Name="";
     }  
 }  

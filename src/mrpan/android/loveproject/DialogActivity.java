@@ -36,8 +36,7 @@ public class DialogActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				QQShareDemo qq=new QQShareDemo(DialogActivity.this,mContext);
-				qq.login();
+				
 			}
 
 		});

@@ -25,7 +25,7 @@ public class DataBaseAdapter {
 		values.put("user_name", user.getName());
 		values.put("user_password", user.getPassword());
 		values.put("user_sex", user.isSex() == true ? 1 : 0);
-		values.put("user_age", user.getAge());
+		values.put("user_nick", user.getNick());
 		values.put("user_sign", user.getSign());
 		values.put("user_info", user.getInfo());
 		values.put("user_photo", user.getPhoto());
@@ -42,7 +42,7 @@ public class DataBaseAdapter {
 		if (!user.getPassword().isEmpty())
 			values.put("user_password", user.getPassword());
 		values.put("user_sex", user.isSex() == true ? 1 : 0);
-		values.put("user_age", user.getAge());
+		values.put("user_nick", user.getNick());
 		if (!user.getSign().isEmpty())
 			values.put("user_sign", user.getSign());
 		if (!user.getInfo().isEmpty())
