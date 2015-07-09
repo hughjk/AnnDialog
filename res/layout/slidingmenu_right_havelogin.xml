@@ -13,8 +13,8 @@
 
         <mrpan.android.loveproject.view.CircleImageView
             android:id="@+id/user_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:contentDescription="@string/cusor"
             android:src="@drawable/biz_pc_main_info_profile_avatar_bg_dark" />
     </LinearLayout>
