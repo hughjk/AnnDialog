@@ -16,7 +16,7 @@ import com.tencent.tauth.UiError;
 
 public class BaseUiListener implements IUiListener {
 	Context mContext;
-	String mScope="";
+	String mScope;
 	private static final int ON_COMPLETE = 0;
 
 	public BaseUiListener(Context mContext) {
@@ -37,24 +37,20 @@ public class BaseUiListener implements IUiListener {
                 JSONObject response = (JSONObject)msg.obj;
                 LoginActivity.obj="";
                 LoginActivity.obj=response.toString();
-                
+                mrpan.android.loveproject.bean.Util.obj="";
+                mrpan.android.loveproject.bean.Util.obj=response.toString();
                 break;
 
             }
         }	    
 	};
 	
-	protected void doComplete(JSONObject jsonObj,String mScope) {
+	protected void doComplete(JSONObject jsonObj) {
 		Message msg = mHandler.obtainMessage();
 	    msg.what = ON_COMPLETE;
 	    msg.obj = jsonObj;
 	    mHandler.sendMessage(msg);
-	    if(mScope.equals("get_vip_rich_info"))
-	    {
-	    	mrpan.android.loveproject.bean.Util.obj="";
-	    	mrpan.android.loveproject.bean.Util.obj=jsonObj.toString();
-	    }
-//	    Log.v("main", jsonObj.toString());
+	    Log.d("Json", jsonObj.toString());
 		// try {
 		// // JSONObject jsonObj = new JSONObject(values.toString());
 		// OPENID = jsonObj.getString("openid");
@@ -84,7 +80,7 @@ public class BaseUiListener implements IUiListener {
 	@Override
 	public void onComplete(Object arg0) {
 		// TODO Auto-generated method stub
-		doComplete((JSONObject) arg0,this.mScope);
+		doComplete((JSONObject) arg0);
 
 	}
 }

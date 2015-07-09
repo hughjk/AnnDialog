@@ -1,10 +1,5 @@
 package mrpan.android.loveproject;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,12 +9,9 @@ import mrpan.android.loveproject.DB.DatabaseHelper;
 import mrpan.android.loveproject.bean.Dialog;
 import mrpan.android.loveproject.bean.User;
 import mrpan.android.loveproject.bean.Util;
+import mrpan.android.loveproject.sdk.BaseUiListener;
 import mrpan.android.loveproject.sdk.QQShareDemo;
 import mrpan.android.loveproject.view.AdViewPager;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -58,6 +50,8 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.tencent.connect.common.Constants;
+import com.tencent.tauth.Tencent;
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -74,7 +68,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private PullToRefreshListView ptrlvHeadLineNews = null;
 	private NewListAdapter newAdapter = null;
 
-	private TextView sign, info, nick;
+	private TextView sign, info,nick;
 
 	private boolean log_database;
 
@@ -87,73 +81,36 @@ public class MainActivity extends Activity implements OnClickListener {
 	private static final int CHANGE_SIGN = 1;
 	private static final int CHANGE_INFO = 2;
 
-	private MyApplication myapp;
-
 	private SlidingMenu slidingMenu = null;
 
 	private DataBaseAdapter db = null;
 
-	Bitmap bitmap;
-	public static String Nick="";
-	
 	public boolean log_State;
 
-	final Handler cwjHandler = new Handler();
-
-	   final Runnable mUpdateResults = new Runnable() {
-	        public void run() {
-	            updateUI();
-	        }
-
-			private void updateUI() {
-				// TODO Auto-generated method stub
-				photo.setImageBitmap(bitmap);
-				nick.setText(Nick);
-			}
-	    };
-	    protected void NetworkOperation() {
-
-	        Thread t = new Thread() {
-	            public void run() {
-	            	
-					try {
-						JSONObject j = new JSONObject(Util.obj);
-						
-						bitmap = getHttpBitmap(j.getString("figureurl_qq_2"));
-						Nick=j.getString("nickname");
-						
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-	                cwjHandler.post(mUpdateResults); //高速UI线程可以更新结果了
-	            }
-	        };
-	        t.start();
-	    }
-	    
+	private MyApplication myapp;
+	//DatabaseHelper d;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		CheckData();
 		db = new DataBaseAdapter(this);
-		myapp = (MyApplication) getApplication();
+		//d=new DatabaseHelper(this);
+		//d.getDataBase(this);
+		//d.getReadableDatabase();
+		myapp = (MyApplication) MainActivity.this.getApplication();
+		Log.v("2222222222222", ""+myapp.getName());
 		log_State = myapp.isLog();
-		Toast.makeText(
-				this,
-				"log_state:" + log_State + ",myapp.log:" + myapp.isLog()
-						+ ",UserName:" + myapp.getName(), Toast.LENGTH_LONG)
-				.show();
 		// 设置抽屉菜单
 		slidingMenu = new SlidingMenu(this);
 		slidingMenu.setMode(SlidingMenu.LEFT_RIGHT);
 		slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN); // 触摸边界拖出菜单
 		slidingMenu.setMenu(R.layout.slidingmenu_left);
-		if (log_State) {
+		if (myapp.isLog()) {
 			slidingMenu.setSecondaryMenu(R.layout.slidingmenu_right_havelogin);
-		} else {
+		}
+		else
+		{
 			slidingMenu.setSecondaryMenu(R.layout.slidingmenu_right);
 		}
 		slidingMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
@@ -162,6 +119,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		slidingMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
 		findViewById();
 	}
+
 
 	boolean CheckData() {
 		try {
@@ -199,68 +157,26 @@ public class MainActivity extends Activity implements OnClickListener {
 		sign = (TextView) findViewById(R.id.sign);
 		photo = (ImageView) findViewById(R.id.user_photo);
 		sex = (ImageView) findViewById(R.id.sex);
-		nick = (TextView) findViewById(R.id.nick);
+		nick=(TextView) findViewById(R.id.nick);
 		findViewById(R.id.change).setOnClickListener(this);
 		((LinearLayout) findViewById(R.id.setting)).setOnClickListener(this);
-		if (Name.equals("qq_User")) {
-//				Log.v("main", Util.obj);
-//				JSONObject j = new JSONObject(Util.obj);
-//				nick.setText(j.getString("nickname"));
-//				Bitmap bitmap = getHttpBitmap(j.getString("figureurl_qq_2"));
-//				photo.setImageBitmap(bitmap);
-				NetworkOperation();
-				
-		} else {
-			User user = db.getUser(Name);
-			if (user != null) {
-				nick.setText(user.getNick());
-				sign.setText(user.getSign());
-				byte[] p = user.getPhoto();
-				if (null != p && p.length > 0) {
-					Bitmap photo = ImageTools.byteToBitmap(p);
-					(this.photo).setImageBitmap(photo);
-				}
-				if (user.isSex())
-					sex.setImageResource(R.drawable.sex_fmale);
-				else
-					sex.setImageResource(R.drawable.sex_male);
-				info.setText(user.getInfo());
+		User user = db.getUser(Name);
+		if (user != null) {
+			nick.setText(user.getNick());
+			sign.setText(user.getSign());
+			byte[] p = user.getPhoto();
+			if (null != p && p.length > 0) {
+				Bitmap photo = ImageTools.byteToBitmap(p);
+				(this.photo).setImageBitmap(photo);
 			}
+			if (user.isSex())
+				sex.setImageResource(R.drawable.sex_fmale);
+			else
+				sex.setImageResource(R.drawable.sex_male);
+			info.setText(user.getInfo());
 		}
 	}
-	
-	void ChangeImg(String url){
-		Bitmap bitmap = getHttpBitmap(url);
-		photo.setImageBitmap(bitmap);
-	}
-	
-	/**
-     * 获取网落图片资源 
-     * @param url
-     * @return
-     */
-	public static Bitmap getHttpBitmap(String url) {
-	     URL myFileUrl = null;
-	     Bitmap bitmap = null;
-	     try {
-	          myFileUrl = new URL(url);
-	     } catch (MalformedURLException e) {
-	          e.printStackTrace();
-	     }
-	     try {
-	          HttpURLConnection conn = (HttpURLConnection) myFileUrl.openConnection();
-	          conn.setConnectTimeout(0);
-	          conn.setDoInput(true);
-	          conn.connect();
-	          InputStream is = conn.getInputStream();
-	          bitmap = BitmapFactory.decodeStream(is);
-	          is.close();
-	     } catch (IOException e) {
-	          e.printStackTrace();
-	     }
-	     return bitmap;
-	}
-    
+
 	void findViewById() {
 
 		findViewById(R.id.bNew).setOnClickListener(this);
@@ -276,10 +192,11 @@ public class MainActivity extends Activity implements OnClickListener {
 				.setOnClickListener(this);
 		((RelativeLayout) findViewById(R.id.left_menu5))
 				.setOnClickListener(this);
+		((LinearLayout) findViewById(R.id.loginNow)).setOnClickListener(this);
 
-		// ((TextView) findViewById(R.id.tvTag1)).setOnClickListener(this);
-		// ((TextView) findViewById(R.id.tvTag2)).setOnClickListener(this);
-		// ((TextView) findViewById(R.id.tvTag3)).setOnClickListener(this);
+		//((TextView) findViewById(R.id.tvTag1)).setOnClickListener(this);
+		//((TextView) findViewById(R.id.tvTag2)).setOnClickListener(this);
+		//((TextView) findViewById(R.id.tvTag3)).setOnClickListener(this);
 		views = new ArrayList<View>();
 		views.add(LayoutInflater.from(this).inflate(R.layout.layout1, null));
 		// views.add(LayoutInflater.from(this).inflate(R.layout.layout3, null));
@@ -289,7 +206,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		vpViewPager.setAdapter(new MyPagerAdapter(views));
 		vpViewPager.setOnPageChangeListener(new MyOnPageChangeListener());
 
-		// initCursor(views.size());
+		//initCursor(views.size());
 
 		MyPagerAdapter myPagerAdapter = (MyPagerAdapter) vpViewPager
 				.getAdapter();
@@ -307,48 +224,36 @@ public class MainActivity extends Activity implements OnClickListener {
 		initPullToRefreshListView(ptrlvHeadLineNews, newAdapter);
 		// initPullToRefreshListView(ptrlvEntertainmentNews, newAdapter);
 		// initPullToRefreshListView(ptrlvFinanceNews, newAdapter);
-		MyApplication myapp = (MyApplication) getApplication();
-		if (log_State) {
-			if (myapp.getName().equals("qq_User")) {
-				//QQShareDemo qq = new QQShareDemo(MainActivity.this, this);
-				//Log.v("main", "find1:"+Util.obj);
-				//qq.getInfo();
-				//qq.getInfo();
-				UserInfo("qq_User");
-				
-				
-			} else {
-				UserInfo(myapp.getName());
+
+		if (myapp.isLog()) {
+			if(myapp.getName().equals("qq_User"))
+			{
+				QQShareDemo qq=new QQShareDemo(MainActivity.this,this);
+				qq.getInfo();
+				Log.v("2222222222222", ""+myapp.isLog());
 			}
-		} else
-			((LinearLayout) findViewById(R.id.loginNow))
-					.setOnClickListener(this);
+			else
+			{
+				UserInfo(myapp.getName());
+				Log.v("2222222222222", ""+myapp.isLog());
+			}
+		}
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// if (requestCode == Constants.REQUEST_API) {
-		// if (resultCode == Constants.RESULT_LOGIN) {
-		// Tencent mTencent = Tencent.createInstance(QQShareDemo.APP_ID, this);
-		// mTencent.handleLoginData(data, new BaseUiListener(this));
-		// }
-		// if(resultCode==Constants.REQUEST_API)
-		// {
-		//
-		// }
-		if (requestCode == 100) {
-			if (resultCode == RESULT_OK) {
-				init();
-			}
+//		if (requestCode == Constants.REQUEST_API) {
+//			if (resultCode == Constants.RESULT_LOGIN) {
+//				Tencent mTencent = Tencent.createInstance(QQShareDemo.APP_ID, this);
+//				mTencent.handleLoginData(data, new BaseUiListener(this));
+//			}
+//			if(resultCode==Constants.REQUEST_API)
+//			{
+//				
+//			}
+			Log.v("lllllllllllllll", "ResultCode"+resultCode);
 			super.onActivityResult(requestCode, resultCode, data);
-		}
-		//Log.v("main", "ResultCode" + resultCode);
 
-	}
-
-	private void init() {
-		log_State = myapp.isLog();
-		//Log.v("main", Util.obj);
 	}
 
 	/**
@@ -378,31 +283,28 @@ public class MainActivity extends Activity implements OnClickListener {
 		case R.id.loginNow:
 			intent = new Intent();
 			intent.setClass(this, LoginActivity.class);
-			this.startActivityForResult(intent, 100);
-			// finish();
-			// System.exit(0);
+			this.startActivity(intent);
+			finish();
 			break;
-		// case R.id.tvTag1:
-		// vpViewPager.setCurrentItem(0);
-		// break;
-		// case R.id.tvTag2:
-		// vpViewPager.setCurrentItem(1);
-		// break;
-		// case R.id.tvTag3:
-		// vpViewPager.setCurrentItem(2);
+//		case R.id.tvTag1:
+//			vpViewPager.setCurrentItem(0);
+//			break;
+//		case R.id.tvTag2:
+//			vpViewPager.setCurrentItem(1);
+//			break;
+//		case R.id.tvTag3:
+//			vpViewPager.setCurrentItem(2);
 		case R.id.left_menu1:
-			Log.d("main", "Menu1_Clicked");
-			if (!log_State) {
+			Log.d("Main", "Menu1_Clicked");
+			if (!myapp.isLog()) {
 				Toast.makeText(this, "请先登录~", Toast.LENGTH_LONG).show();
 				intent = new Intent(this, LoginActivity.class);
 				this.startActivity(intent);
 				finish();
-				System.exit(0);
 			} else {
 				intent = new Intent(this, SendDialogActivity.class);
 				this.startActivity(intent);
 				finish();
-				System.exit(0);
 			}
 
 			break;
@@ -439,35 +341,35 @@ public class MainActivity extends Activity implements OnClickListener {
 	 */
 	public ArrayList<HashMap<String, Object>> getSimulationNews(int n) {
 		ArrayList<HashMap<String, Object>> ret = new ArrayList<HashMap<String, Object>>();
-		ArrayList<Dialog> d = db.getDialog("", n);
+		ArrayList<Dialog> d=db.getDialog("",n);
 		HashMap<String, Object> hm;
-		for (Dialog dd : d) {
-			hm = new HashMap<String, Object>();
-			hm.put("uri",
-					"http://images.china.cn/attachement/jpg/site1000/20131029/001fd04cfc4813d9af0118.jpg");
-			Bitmap bit = ImageTools.byteToBitmap(dd.getImage());
-			hm.put("img", bit);
-			hm.put("title", dd.getTitle());
+		for(Dialog dd : d)
+		{
+			hm=new HashMap<String, Object>();
+			hm.put("uri","http://images.china.cn/attachement/jpg/site1000/20131029/001fd04cfc4813d9af0118.jpg");
+			Bitmap bit=ImageTools.byteToBitmap(dd.getImage());
+			hm.put("img",bit );
+			hm.put("title",dd.getTitle());
 			hm.put("content", dd.getContent());
-			hm.put("review", dd.getID());
+			hm.put("review",dd.getID());
 			ret.add(hm);
 		}
-		// for (int i = 0; i < n; i++) {
-		// hm = new HashMap<String, Object>();
-		// if (i % 2 == 0) {
-		// hm.put("uri",
-		// "http://images.china.cn/attachement/jpg/site1000/20131029/001fd04cfc4813d9af0118.jpg");
-		// } else {
-		// hm.put("uri",
-		// "http://photocdn.sohu.com/20131101/Img389373139.jpg");
-		// }
-		// hm.put("title", "国内成品油价两连跌几成定局");
-		// hm.put("content", "国内成品油今日迎调价窗口，机构预计每升降价0.1元。");
-		// hm.put("review", i + "跟帖");
-		// // Bitmap b=null;
-		// // hm.put("img", b);
-		// ret.add(hm);
-		// }
+//		for (int i = 0; i < n; i++) {
+//			hm = new HashMap<String, Object>();
+//			if (i % 2 == 0) {
+//				hm.put("uri",
+//						"http://images.china.cn/attachement/jpg/site1000/20131029/001fd04cfc4813d9af0118.jpg");
+//			} else {
+//				hm.put("uri",
+//						"http://photocdn.sohu.com/20131101/Img389373139.jpg");
+//			}
+//			hm.put("title", "国内成品油价两连跌几成定局");
+//			hm.put("content", "国内成品油今日迎调价窗口，机构预计每升降价0.1元。");
+//			hm.put("review", i + "跟帖");
+//			// Bitmap b=null;
+//			// hm.put("img", b);
+//			ret.add(hm);
+//		}
 		return ret;
 	}
 
@@ -692,24 +594,37 @@ public class MainActivity extends Activity implements OnClickListener {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View arg1, int position,
 				long arg3) {
-			// System.out.println("你点击了" + (position + 1));
+			//System.out.println("你点击了" + (position + 1));
 			ListView listView = (ListView) parent;
 			@SuppressWarnings("unchecked")
 			HashMap<String, String> map = (HashMap<String, String>) listView
 					.getItemAtPosition(position);
-			String ID = map.get("review");
-			Dialog d = db.getDialogByID(ID);
-			Intent it = new Intent(getBaseContext(), DialogActivity.class);
-			Bundle bundle = new Bundle();
+			String ID=map.get("review");
+			Dialog d=db.getDialogByID(ID);
+			Intent it=new Intent(getBaseContext(),DialogActivity.class);
+			Bundle bundle=new Bundle();
 			bundle.putString("id", ID);
 			// Intent it = new Intent(this, GanbuInfos.class);
 			// Bundle bd = new Bundle();
 			// bd.putString("PersonID", userid);
-			it.putExtras(bundle);
-			startActivity(it);
+			 it.putExtras(bundle);
+			 startActivity(it);
 
 		}
 
+	}
+
+	class MyHandler extends Handler {
+
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case 1: // 更新签名列表
+				break;
+			case 2:
+				break;
+			}
+		}
 	}
 
 	/**

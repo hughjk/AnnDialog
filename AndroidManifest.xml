@@ -44,7 +44,6 @@
             android:name="mrpan.android.loveproject.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
-			
         </activity>
         <activity
             android:name="mrpan.android.loveproject.SendDialogActivity"
