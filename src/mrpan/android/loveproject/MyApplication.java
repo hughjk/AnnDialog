@@ -9,8 +9,8 @@ public class MyApplication extends Application {
     private boolean log;  
     private String Name;
     private JSONObject obj;
-    
-    public JSONObject getObj() {
+
+	public JSONObject getObj() {
 		return obj;
 	}
 
@@ -32,12 +32,13 @@ public class MyApplication extends Application {
 
 	public void setLog(boolean log) {
 		this.log = log;
-	}
-
-	@Override  
-    public void onCreate() {    
-        super.onCreate(); 
-        this.log=false;
-        this.Name="";
-    }  
+	} 
+	
+	 	@Override
+	    public void onCreate()
+	    {
+	        super.onCreate();
+	        log=false;
+	    	Name="";
+	    }
 }  

@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -158,6 +159,8 @@ public class SendDialogActivity extends Activity {
 		mLocationButton = (ImageButton) findViewById(R.id.writerecord_location_button);
 		title=(EditText)findViewById(R.id.dialog_title);
 		author=(EditText)findViewById(R.id.dialog_author);
+		Log.v("main",""+MainActivity.Nick);
+		author.setText(MainActivity.Nick);
 	}
 	
 	
