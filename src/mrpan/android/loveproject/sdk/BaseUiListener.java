@@ -4,13 +4,11 @@ import mrpan.android.loveproject.LoginActivity;
 
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-import com.tencent.open.utils.Util;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.UiError;
 
@@ -35,8 +33,8 @@ public class BaseUiListener implements IUiListener {
             switch (msg.what) {
             case ON_COMPLETE:
                 JSONObject response = (JSONObject)msg.obj;
-                LoginActivity.obj="";
-                LoginActivity.obj=response.toString();
+                mrpan.android.loveproject.bean.Util.login_obj="";
+                mrpan.android.loveproject.bean.Util.login_obj=response.toString();
                 
                 break;
 
@@ -54,7 +52,7 @@ public class BaseUiListener implements IUiListener {
 	    	mrpan.android.loveproject.bean.Util.obj="";
 	    	mrpan.android.loveproject.bean.Util.obj=jsonObj.toString();
 	    }
-//	    Log.v("main", jsonObj.toString());
+	    Log.v("main", jsonObj.toString());
 		// try {
 		// // JSONObject jsonObj = new JSONObject(values.toString());
 		// OPENID = jsonObj.getString("openid");

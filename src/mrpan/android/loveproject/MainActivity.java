@@ -94,7 +94,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private DataBaseAdapter db = null;
 
 	Bitmap bitmap;
-	public static String Nick="";
+	public String Nick="";
 	
 	public boolean log_State;
 
@@ -117,14 +117,18 @@ public class MainActivity extends Activity implements OnClickListener {
 	            public void run() {
 	            	
 					try {
-						JSONObject j = new JSONObject(Util.obj);
+						JSONObject j=null;
+						//if(Util.obj.equals(""))
+					//		j=new JSONObject(myapp.getObj().toString());
+				//		else
+						j = new JSONObject(Util.obj);myapp.setObj(j);
 						
 						bitmap = getHttpBitmap(j.getString("figureurl_qq_2"));
 						Nick=j.getString("nickname");
 						
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
-						e.printStackTrace();
+						Log.v("main", "find1:"+Util.obj+",error:"+e.getMessage());
 					}
 					
 	                cwjHandler.post(mUpdateResults); //高速UI线程可以更新结果了
@@ -208,6 +212,14 @@ public class MainActivity extends Activity implements OnClickListener {
 //				nick.setText(j.getString("nickname"));
 //				Bitmap bitmap = getHttpBitmap(j.getString("figureurl_qq_2"));
 //				photo.setImageBitmap(bitmap);
+			//info.setVisibility(View.GONE);
+			//sign.setVisibility(View.GONE);
+			//sex.setVisibility(View.GONE);
+			((LinearLayout) findViewById(R.id.islogin_layout1)).setVisibility(View.GONE);
+			((LinearLayout) findViewById(R.id.islogin_layout2)).setVisibility(View.GONE);
+			((LinearLayout) findViewById(R.id.islogin_layout3)).setVisibility(View.GONE);
+			((LinearLayout) findViewById(R.id.islogin_layout4)).setVisibility(View.GONE);
+			
 				NetworkOperation();
 				
 		} else {
@@ -337,12 +349,12 @@ public class MainActivity extends Activity implements OnClickListener {
 		//
 		// }
 		if (requestCode == 100) {
-			if (resultCode == RESULT_OK) {
+			if (resultCode == 9) {
 				init();
 			}
 			super.onActivityResult(requestCode, resultCode, data);
 		}
-		//Log.v("main", "ResultCode" + resultCode);
+		Log.v("main", "result2:"+resultCode+",requestCode2:"+requestCode);
 
 	}
 
@@ -394,15 +406,17 @@ public class MainActivity extends Activity implements OnClickListener {
 			Log.d("main", "Menu1_Clicked");
 			if (!log_State) {
 				Toast.makeText(this, "请先登录~", Toast.LENGTH_LONG).show();
-				intent = new Intent(this, LoginActivity.class);
-				this.startActivity(intent);
-				finish();
-				System.exit(0);
+				intent = new Intent();
+				intent.setClass(this, LoginActivity.class);
+				this.startActivityForResult(intent, 100);
 			} else {
 				intent = new Intent(this, SendDialogActivity.class);
+				Bundle b=new Bundle();
+				b.putString("nick", Nick);
+				intent.putExtras(b);
 				this.startActivity(intent);
-				finish();
-				System.exit(0);
+				//finish();
+				//System.exit(0);
 			}
 
 			break;

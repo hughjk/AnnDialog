@@ -61,8 +61,6 @@ public class LoginActivity extends Activity {
 
 	private DataBaseAdapter db = null;
 
-	public static String obj = "";
-	
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -77,14 +75,14 @@ public class LoginActivity extends Activity {
 		mLogin = (Button) findViewById(R.id.login);
 		login_picture = (ImageView) findViewById(R.id.login_picture);
 		qq_login = (ImageButton) findViewById(R.id.qq_login);
-		
-		//login_picture.setImageBitmap(bitmap);
-		
+
+		// login_picture.setImageBitmap(bitmap);
+
 		mZhuce = (Button) findViewById(R.id.zhuce);
 		password = (EditText) findViewById(R.id.user_password);
 		tvForgetpwd = (TextView) findViewById(R.id.forgetpwd);
 		user = (EditText) findViewById(R.id.user_name);
-		
+
 		user.addTextChangedListener(new TextWatcher() {
 
 			@Override
@@ -182,7 +180,7 @@ public class LoginActivity extends Activity {
 			public void onClick(View v) {
 				Toast.makeText(mContext, "忘记密码啦？联系相关人员解决吧~(=.=)",
 						Toast.LENGTH_LONG).show();
-				//t.start();
+				// t.start();
 			}
 		});
 
@@ -205,29 +203,33 @@ public class LoginActivity extends Activity {
 		mTencent.logout(mContext);
 	}
 
-	public void Close() {
+	void Close() {
+		Thread t = new Thread(new Runnable() {
 
-		// finish();
-		// System.exit(0);
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				// try {
+				// Bitmap bitmap
+				// =getHttpBitmap("http://q.qlogo.cn/qqapp/1104753484/99DBA73F843D182925EDB37159A40F7D/100");
+				// login_picture.setImageBitmap(bitmap);
+				// qq_login.setImageBitmap(bitmap);
+				// } catch (Exception e) {
+				// // TODO Auto-generated catch block
+				// Log.v("main", "error:"+e.getMessage());
+				// }
+				finish();
+			}
 
-	}
-
-	Thread t = new Thread(new Runnable() {
-
-		@Override
-		public void run() {
-			// TODO Auto-generated method stub
-//			try {
-//				 Bitmap bitmap =getHttpBitmap("http://q.qlogo.cn/qqapp/1104753484/99DBA73F843D182925EDB37159A40F7D/100");
-//				 login_picture.setImageBitmap(bitmap);
-//				 qq_login.setImageBitmap(bitmap);
-//			 } catch (Exception e) {
-//				// TODO Auto-generated catch block
-//				Log.v("main", "error:"+e.getMessage());
-//			}
+		});
+		try {
+			t.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-	});
+		t.start();
+	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -236,25 +238,28 @@ public class LoginActivity extends Activity {
 				Tencent mTencent = Tencent.createInstance(QQShareDemo.APP_ID,
 						mContext);
 				mTencent.handleLoginData(data, new BaseUiListener(mContext));
+				finish();
+				
 			}
-
-			myapp.setLog(true);
-			myapp.setName("qq_User");
 			getInfo();
-			// System.out.println("User:"+myapp.getName());
-			// Log.v("ddddddddddddd", ""+myapp.isLog());
-			Intent intent = new Intent();
-			intent.setClass(mContext, MainActivity.class);
-			this.setResult(RESULT_OK);
-			startActivity(intent);
-			try {
-				t.sleep(1000);
-				t.start();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if (resultCode == 0) {
+				
+				// Log.v("main",
+				// "result:"+resultCode+",requestCode:"+requestCode);
+				myapp.setLog(true);
+				myapp.setName("qq_User");
+				 System.out.println("User:"+myapp.getName());
+				 Log.v("ddddddddddddd", ""+myapp.isLog());
+				Intent intent = new Intent();
+				intent.setClass(mContext, MainActivity.class);
+				this.setResult(9);
+				startActivity(intent);
+				Close();
 			}
+			
+			
 		}
+		Log.v("main", "result:"+resultCode+",requestCode:"+requestCode);
 		super.onActivityResult(requestCode, resultCode, data);
 
 	}

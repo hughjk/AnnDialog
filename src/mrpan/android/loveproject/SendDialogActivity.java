@@ -51,6 +51,8 @@ public class SendDialogActivity extends Activity {
 	private ImageButton mLocationButton;
 	private ImageView photo;
 	
+	private Bitmap bitmap=null;
+	
 	private static final int TAKE_PICTURE = 0;
 	private static final int CHOOSE_PICTURE = 1;
 	private static final int CROP = 2;
@@ -73,10 +75,12 @@ public class SendDialogActivity extends Activity {
 		mContext = this;
 		//d=DatabaseHelper.getDataBase(this);
 		//SQLiteDatabase dbb=d.getReadableDatabase();
-		
+		Bundle b=this.getIntent().getExtras();
+		String nick=b.getString("nick");
 		db=new DataBaseAdapter(this);
 		findViewById();
 		setListener();
+		author.setText(nick);
 	}
 	
 	private void setListener() {
@@ -132,7 +136,9 @@ public class SendDialogActivity extends Activity {
 		String Title=title.getText().toString().trim();
 		String Author=author.getText().toString().trim();
 		String Content=mContent.getText().toString().trim();
-		Bitmap bitmap=ImageTools.getBitmap(photo);
+		Bitmap bitmap=null;
+		if(this.bitmap!=null)
+			bitmap=this.bitmap;
 		byte[] Photo=ImageTools.bitmapToBytes(bitmap);
 		SimpleDateFormat formatter =new SimpleDateFormat("MM,yyyy-dd");
 		Date curDate=new Date(System.currentTimeMillis());//获取当前时间       
@@ -159,8 +165,7 @@ public class SendDialogActivity extends Activity {
 		mLocationButton = (ImageButton) findViewById(R.id.writerecord_location_button);
 		title=(EditText)findViewById(R.id.dialog_title);
 		author=(EditText)findViewById(R.id.dialog_author);
-		Log.v("main",""+MainActivity.Nick);
-		author.setText(MainActivity.Nick);
+		
 	}
 	
 	
@@ -173,11 +178,12 @@ public class SendDialogActivity extends Activity {
 				// 将保存在本地的图片取出并缩小后显示在界面上
 				Bitmap bitmap = BitmapFactory.decodeFile(Environment
 						.getExternalStorageDirectory() + "/image.jpg");
+				
 				Bitmap newBitmap = ImageTools.zoomBitmap(bitmap,
 						bitmap.getWidth() / SCALE, bitmap.getHeight() / SCALE);
 				// 由于Bitmap内存占用较大，这里需要回收内存，否则会报out of memory异常
 				bitmap.recycle();
-
+				this.bitmap=newBitmap;
 				// 将处理过的图片显示在界面上，并保存到本地
 				photo.setImageBitmap(newBitmap);
 				ImageTools.savePhotoToSDCard(newBitmap, filepath,
@@ -193,6 +199,7 @@ public class SendDialogActivity extends Activity {
 					// 使用ContentProvider通过URI获取原始图片
 					Bitmap photo = MediaStore.Images.Media.getBitmap(resolver,
 							originalUri);
+					
 					if (photo != null) {
 						// 为防止原始图片过大导致内存溢出，这里先缩小原图显示，然后释放原始Bitmap占用的内存
 						Bitmap smallBitmap = ImageTools.zoomBitmap(photo,
@@ -200,7 +207,7 @@ public class SendDialogActivity extends Activity {
 										/ SCALE);
 						// 释放原始图片占用的内存，防止out of memory异常发生
 						photo.recycle();
-
+						this.bitmap=smallBitmap;
 						this.photo.setImageBitmap(smallBitmap);
 					}
 				} catch (FileNotFoundException e) {
@@ -219,10 +226,13 @@ public class SendDialogActivity extends Activity {
 					Bundle extra = data.getExtras();
 					if (extra != null) {
 						photo = (Bitmap) extra.get("data");
+						
 						ByteArrayOutputStream stream = new ByteArrayOutputStream();
 						photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+						
 					}
 				}
+				this.bitmap=photo;
 				this.photo.setImageBitmap(photo);
 				break;
 			default:

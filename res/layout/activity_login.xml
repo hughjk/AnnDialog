@@ -14,8 +14,8 @@
 
     <mrpan.android.loveproject.view.CircleImageView
         android:id="@+id/login_picture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginTop="40dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/biz_pc_main_info_profile_avatar_bg_dark" />
@@ -140,6 +140,12 @@
 
     </LinearLayout>
 
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
 </LinearLayout>
 
 </LinearLayout>

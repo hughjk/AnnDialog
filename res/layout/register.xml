@@ -22,8 +22,8 @@
 
         <mrpan.android.loveproject.view.CircleImageView
             android:id="@+id/zhuce_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:src="@drawable/biz_pc_main_info_profile_avatar_bg_dark" />
@@ -60,7 +60,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
             android:background="@drawable/login_et_bg"
-            android:gravity="center"
             android:hint="@string/user_name"
             android:inputType="text"
             android:padding="5dp"
@@ -87,7 +86,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
             android:background="@drawable/login_et_bg"
-            android:gravity="center"
             android:hint="@string/user_pwd"
             android:inputType="text"
             android:padding="5dp"
@@ -159,9 +157,8 @@
 		    android:layout_margin="2dp"
 		    android:background="@drawable/login_et_bg"
 		    android:ems="10"
-		    android:gravity="center"
-		    android:inputType="number"
 		    android:padding="5dp"
+		    android:inputType="text"
 		    android:hint="昵称"
 		    android:textAlignment="center" >
 		</EditText>
